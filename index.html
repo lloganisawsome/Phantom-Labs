@@ -1,0 +1,1182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Phantom Labs Group</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Rajdhani:wght@300;400;500;600;700&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Lexend+Mega:wght@100..900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CUSTOM CURSOR */
+#cursor{
+  position:fixed;width:8px;height:8px;
+  background:#39ff14;border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .15s,height .15s,background .2s;
+  mix-blend-mode:screen;
+}
+#cursor-ring{
+  position:fixed;width:30px;height:30px;
+  border:1px solid rgba(57,255,20,.4);
+  border-radius:50%;pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:all .12s ease;
+}
+body:hover #cursor{opacity:1;}
+
+/* CANVAS BG */
+#bg-canvas{
+  position:fixed;top:0;left:0;width:100%;height:100%;
+  pointer-events:none;z-index:0;
+}
+
+/* PAGE SYSTEM */
+.page{display:none;min-height:100vh;}
+.page.active{display:block;}
+
+/* NAVBAR */
+#navbar{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:1rem 3.5rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(0,0,0,.7);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(57,255,20,.15);
+  transition:border-color .5s,box-shadow .5s;
+}
+.nav-logo{display:flex;align-items:center;text-decoration:none;cursor:none;}
+.nav-logo img{height:30px;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{
+  text-decoration:none;
+  color:rgba(255,255,255,.4);
+  font-family:'Rajdhani',sans-serif;
+  font-size:.85rem;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;
+  cursor:none;transition:color .25s;
+}
+.nav-links a:hover{color:#39ff14;}
+.nav-back{
+  display:none;
+  background:none;border:1px solid rgba(57,255,20,.4);
+  color:#39ff14;padding:.45rem 1.2rem;
+  font-family:'Rajdhani',sans-serif;font-size:.8rem;
+  font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  cursor:none;border-radius:2px;transition:all .25s;
+}
+.nav-back:hover{background:#39ff14;color:#000;}
+
+/* GLITCH */
+.glitch{position:relative;display:inline-block;}
+.glitch::before,.glitch::after{
+  content:attr(data-text);
+  position:absolute;top:0;left:0;width:100%;height:100%;
+}
+.glitch::before{
+  color:#39ff14;animation:glitch1 5s infinite;
+  clip-path:polygon(0 0,100% 0,100% 35%,0 35%);
+}
+.glitch::after{
+  color:#0ff;animation:glitch2 5s infinite;
+  clip-path:polygon(0 65%,100% 65%,100% 100%,0 100%);
+}
+@keyframes glitch1{
+  0%,90%,100%{transform:translate(0);}
+  92%{transform:translate(-4px,1px);}
+  95%{transform:translate(3px,-1px);}
+  98%{transform:translate(-2px,0);}
+}
+@keyframes glitch2{
+  0%,90%,100%{transform:translate(0);}
+  92%{transform:translate(4px,-1px);}
+  95%{transform:translate(-3px,1px);}
+  98%{transform:translate(2px,0);}
+}
+
+/* ===================== HERO ===================== */
+#hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  position:relative;overflow:hidden;background:#000;
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(57,255,20,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(57,255,20,.03) 1px,transparent 1px);
+  background-size:64px 64px;
+  animation:gridScroll 28s linear infinite;
+}
+.hero-radial{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 55%,rgba(57,255,20,.08) 0%,transparent 62%);
+  animation:radPulse 6s ease-in-out infinite;
+}
+@keyframes gridScroll{from{background-position:0 0;}to{background-position:64px 64px;}}
+@keyframes radPulse{0%,100%{opacity:.6;transform:scale(1);}50%{opacity:1;transform:scale(1.08);}}
+.hero-content{
+  position:relative;z-index:2;
+  text-align:center;padding:0 2rem;
+}
+.hero-logo{
+  width:min(520px,80vw);margin-bottom:3rem;
+  filter:drop-shadow(0 0 50px rgba(57,255,20,.5)) drop-shadow(0 0 100px rgba(57,255,20,.2));
+  animation:hFloat 7s ease-in-out infinite;
+}
+@keyframes hFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.hero-eyebrow{
+  font-family:'Rajdhani',sans-serif;
+  font-size:.75rem;font-weight:600;
+  letter-spacing:.4em;text-transform:uppercase;
+  color:rgba(57,255,20,.6);margin-bottom:1.2rem;min-height:1.2em;
+}
+.hero-headline{
+  font-family:'Exo 2',sans-serif;
+  font-size:clamp(2.6rem,6vw,5.2rem);
+  font-weight:900;line-height:1.04;margin-bottom:1.5rem;
+}
+.hero-headline .hl{
+  color:#39ff14;
+  text-shadow:0 0 35px rgba(57,255,20,.55);
+}
+.hero-sub{
+  font-size:clamp(.9rem,1.7vw,1.05rem);
+  color:rgba(255,255,255,.4);
+  max-width:520px;margin:0 auto 2.8rem;line-height:2;
+}
+.btn-neon{
+  display:inline-block;padding:.95rem 2.6rem;
+  background:transparent;border:1.5px solid #39ff14;
+  color:#39ff14;text-decoration:none;
+  font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;
+  border-radius:2px;cursor:none;position:relative;overflow:hidden;
+  transition:color .28s;
+}
+.btn-neon::before{
+  content:'';position:absolute;inset:0;background:#39ff14;
+  transform:translateX(-101%);transition:transform .28s ease;z-index:-1;
+}
+.btn-neon:hover::before{transform:translateX(0);}
+.btn-neon:hover{color:#000;box-shadow:0 0 35px rgba(57,255,20,.4);}
+.scroll-hint{
+  position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  opacity:.28;animation:sbounce 2.5s ease-in-out infinite;
+}
+.scroll-hint span{font-family:'Rajdhani',sans-serif;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;}
+.scroll-arr{width:16px;height:16px;border-right:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(45deg);}
+@keyframes sbounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(8px);}}
+
+/* ===================== ABOUT ===================== */
+#about{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:8rem 2rem;background:#020202;position:relative;overflow:hidden;
+}
+#about::before{
+  content:'';position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(57,255,20,.055),transparent 70%);
+  top:-100px;right:-120px;animation:radPulse 8s ease-in-out infinite;
+}
+.about-wrap{
+  max-width:1060px;width:100%;
+  display:grid;grid-template-columns:1.15fr 1fr;
+  gap:5.5rem;align-items:center;position:relative;z-index:2;
+}
+.about-eyebrow{
+  font-family:'Rajdhani',sans-serif;font-size:.72rem;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:#39ff14;margin-bottom:1rem;
+}
+.about-title{
+  font-family:'Exo 2',sans-serif;font-size:clamp(1.9rem,3.8vw,3rem);
+  font-weight:900;line-height:1.08;margin-bottom:.4rem;
+}
+.about-title .dim{color:rgba(255,255,255,.16);}
+.neon-line{width:70px;height:2px;background:linear-gradient(90deg,#39ff14,transparent);box-shadow:0 0 10px rgba(57,255,20,.45);margin:1.4rem 0;}
+.about-body{font-size:.97rem;color:rgba(255,255,255,.5);line-height:2;margin-bottom:1rem;}
+.about-mission{
+  font-size:1.02rem;color:rgba(255,255,255,.72);line-height:1.9;
+  border-left:2px solid #39ff14;padding-left:1.1rem;
+  margin:1.6rem 0 2rem;font-style:italic;
+}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.stat{
+  padding:1.8rem 1.4rem;border:1px solid rgba(57,255,20,.12);
+  border-radius:4px;background:rgba(57,255,20,.02);
+  position:relative;overflow:hidden;transition:all .3s;
+}
+.stat:hover{border-color:rgba(57,255,20,.4);background:rgba(57,255,20,.055);transform:translateY(-3px);}
+.stat::after{
+  content:'';position:absolute;top:0;left:0;width:3px;height:100%;
+  background:#39ff14;box-shadow:0 0 10px rgba(57,255,20,.6);
+  transform:scaleY(0);transform-origin:bottom;transition:transform .35s ease;
+}
+.stat:hover::after{transform:scaleY(1);}
+.stat-num{
+  font-family:'Exo 2',sans-serif;font-size:2.6rem;font-weight:900;
+  color:#39ff14;line-height:1;margin-bottom:.35rem;
+  text-shadow:0 0 18px rgba(57,255,20,.5);
+}
+.stat-label{font-family:'Rajdhani',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+
+/* ===================== ECOSYSTEM ===================== */
+#ecosystem{
+  padding:8rem 2rem;background:#010101;position:relative;overflow:hidden;
+}
+#ecosystem::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 50%,rgba(57,255,20,.045),transparent 58%);
+}
+.eco-inner{max-width:980px;margin:0 auto;position:relative;z-index:2;}
+.eco-eyebrow{
+  font-family:'Rajdhani',sans-serif;font-size:.72rem;font-weight:600;
+  letter-spacing:.34em;text-transform:uppercase;color:#39ff14;
+  margin-bottom:1rem;text-align:center;
+}
+.eco-title{
+  font-family:'Exo 2',sans-serif;font-size:clamp(1.7rem,3.2vw,2.6rem);
+  font-weight:900;text-align:center;margin-bottom:.9rem;
+}
+.eco-intro{
+  text-align:center;font-size:.97rem;color:rgba(255,255,255,.42);
+  max-width:600px;margin:0 auto 3.8rem;line-height:1.95;
+}
+.eco-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin-bottom:3rem;}
+.eco-card{
+  padding:2rem 1.8rem;border-radius:6px;border:1px solid;
+  background:rgba(0,0,0,.45);backdrop-filter:blur(8px);
+  position:relative;overflow:hidden;transition:transform .3s;
+}
+.eco-card:hover{transform:translateY(-4px);}
+.eco-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;}
+.eco-card.sn{border-color:rgba(255,255,255,.09);}
+.eco-card.sn::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);}
+.eco-card.cf{border-color:rgba(107,138,255,.14);}
+.eco-card.cf::before{background:linear-gradient(90deg,transparent,rgba(107,138,255,.4),transparent);}
+.eco-card.nb{border-color:rgba(0,180,230,.14);}
+.eco-card.nb::before{background:linear-gradient(90deg,transparent,rgba(0,180,230,.4),transparent);}
+.eco-card.ec{border-color:rgba(80,200,220,.14);}
+.eco-card.ec::before{background:linear-gradient(90deg,transparent,rgba(80,200,220,.4),transparent);}
+.eco-card-label{
+  font-family:'Rajdhani',sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;margin-bottom:.6rem;
+}
+.sn .eco-card-label{color:rgba(255,255,255,.5);}
+.cf .eco-card-label{color:#6B8AFF;}
+.nb .eco-card-label{color:#00b4e6;}
+.ec .eco-card-label{color:#50c8dc;}
+.eco-card p{font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.85;}
+.eco-footer{
+  text-align:center;font-size:.88rem;color:rgba(255,255,255,.32);
+  line-height:1.9;font-style:italic;padding:1.8rem;
+  border:1px solid rgba(57,255,20,.09);border-radius:4px;
+  background:rgba(57,255,20,.018);
+}
+.eco-footer span{color:#39ff14;}
+
+/* ===================== COMPANY SECTIONS ===================== */
+.company-section{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:8rem 2rem;position:relative;overflow:hidden;
+}
+.section-bg-glow{position:absolute;inset:0;pointer-events:none;}
+.company-layout{
+  max-width:1060px;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4.5rem;align-items:center;position:relative;z-index:2;
+}
+.company-layout.flip{direction:rtl;}
+.company-layout.flip>*{direction:ltr;}
+.co-eyebrow{
+  font-family:'Rajdhani',sans-serif;font-size:.65rem;font-weight:600;
+  letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.7rem;
+}
+.co-name{font-weight:800;line-height:1.04;margin-bottom:.5rem;}
+.co-tagline{font-size:.92rem;color:rgba(255,255,255,.3);margin-bottom:1.2rem;font-style:italic;font-weight:300;}
+.co-bar{height:2px;width:65px;margin-bottom:1.6rem;}
+.co-desc{font-size:.97rem;line-height:1.95;color:rgba(255,255,255,.5);margin-bottom:1.8rem;}
+.co-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.2rem;}
+.co-tag{
+  padding:.28rem .82rem;border-radius:100px;
+  font-family:'Rajdhani',sans-serif;font-size:.7rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.btn-brand{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.85rem 2rem;background:transparent;border:1.5px solid;
+  text-decoration:none;
+  font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+  border-radius:2px;cursor:none;position:relative;overflow:hidden;transition:color .28s;
+}
+.btn-brand-inner{position:absolute;inset:0;transform:translateX(-101%);transition:transform .28s ease;z-index:-1;}
+.btn-brand:hover .btn-brand-inner{transform:translateX(0);}
+.co-visual{display:flex;flex-direction:column;align-items:center;gap:1.8rem;}
+.co-logo{width:min(260px,72%);transition:transform .5s ease;animation:coFloat 6s ease-in-out infinite;}
+.co-logo:hover{transform:scale(1.05);}
+@keyframes coFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
+.co-card{
+  width:100%;padding:1.6rem;border:1px solid;border-radius:6px;
+  background:rgba(0,0,0,.5);backdrop-filter:blur(10px);
+}
+.co-card h4{
+  font-family:'Rajdhani',sans-serif;font-size:.65rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.26);margin-bottom:1rem;
+}
+.feat-list{list-style:none;display:flex;flex-direction:column;gap:.8rem;}
+.feat-list li{font-size:.86rem;color:rgba(255,255,255,.56);display:flex;align-items:center;gap:.8rem;}
+.feat-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+
+/* SN BRAND */
+#sn{background:#060606;}
+#sn .section-bg-glow{background:radial-gradient(ellipse at 16% 50%,rgba(255,255,255,.038),transparent 52%);}
+/* SN "SN PRODUCTIONS" text — Bebas Neue style */
+#sn .co-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,5.5vw,5rem);
+  color:#fff;letter-spacing:.05em;
+  text-shadow:0 0 40px rgba(255,255,255,.12);
+}
+#sn .co-bar{background:linear-gradient(90deg,#fff,transparent);}
+#sn .co-tag{background:rgba(255,255,255,.07);color:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.1);}
+#sn .btn-brand{border-color:#fff;color:#fff;}
+#sn .btn-brand-inner{background:#fff;}
+#sn .btn-brand:hover{color:#000;box-shadow:0 0 25px rgba(255,255,255,.16);}
+#sn .co-logo{filter:drop-shadow(0 0 22px rgba(255,255,255,.2));}
+#sn .co-card{border-color:rgba(255,255,255,.08);}
+#sn .feat-dot{background:#fff;box-shadow:0 0 5px rgba(255,255,255,.7);}
+
+/* CLASSFLOW BRAND */
+#classflow{background:#02020c;}
+#classflow .section-bg-glow{background:radial-gradient(ellipse at 84% 50%,rgba(107,138,255,.09),transparent 52%);}
+/* ClassFlow "CF ClassFlow" — big bold rounded sans */
+#classflow .co-name{
+  font-family:'Nunito',sans-serif;
+  font-size:clamp(2.4rem,4.2vw,3.8rem);
+  font-weight:900;color:#6B8AFF;
+  text-shadow:0 0 50px rgba(107,138,255,.4);
+  letter-spacing:-.01em;
+}
+#classflow .co-bar{background:linear-gradient(90deg,#6B8AFF,transparent);box-shadow:0 0 9px rgba(107,138,255,.4);}
+#classflow .co-tag{background:rgba(107,138,255,.1);color:#8aa3ff;border:1px solid rgba(107,138,255,.17);}
+#classflow .btn-brand{border-color:#6B8AFF;color:#6B8AFF;}
+#classflow .btn-brand-inner{background:#6B8AFF;}
+#classflow .btn-brand:hover{color:#000;box-shadow:0 0 25px rgba(107,138,255,.32);}
+#classflow .co-logo{filter:drop-shadow(0 0 22px rgba(107,138,255,.38));border-radius:14%;}
+#classflow .co-card{border-color:rgba(107,138,255,.12);}
+#classflow .feat-dot{background:#6B8AFF;box-shadow:0 0 5px rgba(107,138,255,.7);}
+
+/* NORTHBYTE BRAND */
+#northbyte{background:#010a0e;}
+#northbyte .section-bg-glow{background:radial-gradient(ellipse at 16% 50%,rgba(0,180,230,.07),transparent 52%);}
+/* NorthByte — wide tracked caps like their logo (Barlow Condensed) */
+#northbyte .co-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(2.5rem,4.5vw,4.2rem);
+  font-weight:800;color:#00b4e6;letter-spacing:.12em;text-transform:uppercase;
+  text-shadow:0 0 50px rgba(0,180,230,.42);
+}
+#northbyte .co-bar{background:linear-gradient(90deg,#00b4e6,transparent);box-shadow:0 0 9px rgba(0,180,230,.4);}
+#northbyte .co-tag{background:rgba(0,180,230,.08);color:#00c8ff;border:1px solid rgba(0,180,230,.17);}
+#northbyte .btn-brand{border-color:#00b4e6;color:#00b4e6;}
+#northbyte .btn-brand-inner{background:#00b4e6;}
+#northbyte .btn-brand:hover{color:#000;box-shadow:0 0 25px rgba(0,180,230,.38);}
+#northbyte .co-logo{filter:drop-shadow(0 0 22px rgba(0,180,230,.4));}
+#northbyte .co-card{border-color:rgba(0,180,230,.12);}
+#northbyte .feat-dot{background:#00b4e6;box-shadow:0 0 5px rgba(0,180,230,.7);}
+
+/* ECLIPSE BRAND */
+#eclipse{background:#01020a;}
+#eclipse .section-bg-glow{background:radial-gradient(ellipse at 84% 50%,rgba(80,200,220,.07),transparent 52%);}
+/* Eclipse — clean rounded modern sans */
+#eclipse .co-name{
+  font-family:'Lexend Mega',sans-serif;
+  font-size:clamp(2rem,3.5vw,3.2rem);
+  font-weight:700;color:#50c8dc;
+  text-shadow:0 0 50px rgba(80,200,220,.42);
+  letter-spacing:-.02em;
+}
+#eclipse .co-bar{background:linear-gradient(90deg,#50c8dc,transparent);box-shadow:0 0 9px rgba(80,200,220,.4);}
+#eclipse .co-tag{background:rgba(80,200,220,.08);color:#6fd8e8;border:1px solid rgba(80,200,220,.17);}
+#eclipse .btn-brand{border-color:#50c8dc;color:#50c8dc;}
+#eclipse .btn-brand-inner{background:#50c8dc;}
+#eclipse .btn-brand:hover{color:#000;box-shadow:0 0 25px rgba(80,200,220,.38);}
+#eclipse .co-logo{filter:drop-shadow(0 0 22px rgba(80,200,220,.4));border-radius:22%;}
+#eclipse .co-card{border-color:rgba(80,200,220,.12);}
+#eclipse .feat-dot{background:#50c8dc;box-shadow:0 0 5px rgba(80,200,220,.7);}
+
+/* ===================== BRANDS GRID ===================== */
+#brands{padding:8rem 2rem;background:#030303;position:relative;overflow:hidden;}
+#brands::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(57,255,20,.038),transparent 58%);}
+.brands-header{text-align:center;margin-bottom:4.5rem;position:relative;z-index:2;}
+.brands-eyebrow{font-family:'Rajdhani',sans-serif;font-size:.72rem;font-weight:600;letter-spacing:.34em;text-transform:uppercase;color:#39ff14;margin-bottom:.9rem;}
+.brands-header h2{font-family:'Exo 2',sans-serif;font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;margin-bottom:.9rem;}
+.brands-header p{color:rgba(255,255,255,.36);font-size:.93rem;max-width:440px;margin:0 auto;}
+.brands-grid{max-width:960px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;position:relative;z-index:2;}
+.brand-tile{
+  padding:2.5rem 2rem;border-radius:8px;
+  text-decoration:none;display:flex;flex-direction:column;gap:1rem;
+  cursor:none;position:relative;overflow:hidden;transition:transform .35s ease;
+}
+.brand-tile::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .35s;}
+.brand-tile:hover{transform:translateY(-5px);}
+.brand-tile:hover::before{opacity:1;}
+.brand-tile.sn{background:#0a0a0a;border:1px solid rgba(255,255,255,.07);}
+.brand-tile.sn::before{background:radial-gradient(circle at 50% 0%,rgba(255,255,255,.04),transparent 58%);}
+.brand-tile.cf{background:#050514;border:1px solid rgba(107,138,255,.12);}
+.brand-tile.cf::before{background:radial-gradient(circle at 50% 0%,rgba(107,138,255,.065),transparent 58%);}
+.brand-tile.nb{background:#010b12;border:1px solid rgba(0,180,230,.12);}
+.brand-tile.nb::before{background:radial-gradient(circle at 50% 0%,rgba(0,180,230,.065),transparent 58%);}
+.brand-tile.ec{background:#02020e;border:1px solid rgba(80,200,220,.12);}
+.brand-tile.ec::before{background:radial-gradient(circle at 50% 0%,rgba(80,200,220,.065),transparent 58%);}
+.tile-logo{height:46px;object-fit:contain;object-position:left;}
+.tile-name{font-family:'Exo 2',sans-serif;font-size:1.15rem;font-weight:800;}
+.sn .tile-name{color:#fff;}
+.cf .tile-name{color:#6B8AFF;}
+.nb .tile-name{color:#00b4e6;}
+.ec .tile-name{color:#50c8dc;}
+.tile-desc{font-size:.84rem;color:rgba(255,255,255,.4);line-height:1.72;}
+.tile-arrow{position:absolute;bottom:1.6rem;right:1.6rem;font-size:1rem;opacity:.18;transition:opacity .28s,transform .28s;}
+.brand-tile:hover .tile-arrow{opacity:1;transform:translate(3px,-3px);}
+
+/* FUTURE LINE */
+.future-line{text-align:center;padding:4.5rem 2rem;background:#000;}
+.future-line p{color:rgba(255,255,255,.2);font-family:'Rajdhani',sans-serif;font-size:.82rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;}
+.future-line p span{color:rgba(57,255,20,.5);}
+
+/* FOOTER */
+footer{background:#000;border-top:1px solid rgba(57,255,20,.09);padding:3rem 3.5rem 2.2rem;}
+.footer-inner{max-width:1060px;margin:0 auto;}
+.footer-top{
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.8rem;
+  margin-bottom:2.2rem;padding-bottom:2.2rem;border-bottom:1px solid rgba(255,255,255,.04);
+}
+.footer-logo img{height:28px;}
+.footer-links{display:flex;gap:1.8rem;flex-wrap:wrap;}
+.footer-links a{
+  text-decoration:none;color:rgba(255,255,255,.28);
+  font-family:'Rajdhani',sans-serif;font-size:.75rem;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;cursor:none;transition:color .25s;
+}
+.footer-links a:hover{color:#39ff14;}
+.footer-bottom{text-align:center;font-family:'Rajdhani',sans-serif;font-size:.7rem;color:rgba(255,255,255,.16);letter-spacing:.08em;}
+
+/* ===================== BRAND PAGES ===================== */
+.bp-hero{
+  min-height:60vh;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;padding:9rem 2rem 5rem;
+}
+.bp-hero-content{max-width:820px;width:100%;text-align:center;position:relative;z-index:2;}
+.bp-logo{width:min(220px,55vw);margin-bottom:2.2rem;animation:hFloat 7s ease-in-out infinite;}
+.bp-title{font-weight:800;line-height:1.04;margin-bottom:.9rem;font-size:clamp(2.2rem,4.5vw,3.6rem);}
+.bp-sub{font-size:1.02rem;color:rgba(255,255,255,.4);max-width:580px;margin:0 auto 2.5rem;line-height:1.95;}
+.btn-outline{
+  display:inline-block;padding:.9rem 2.4rem;border:1.5px solid;
+  text-decoration:none;font-family:'Rajdhani',sans-serif;font-weight:700;
+  font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;border-radius:2px;cursor:none;
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.btn-outline-inner{position:absolute;inset:0;transform:translateX(-101%);transition:transform .28s ease;z-index:-1;}
+.btn-outline:hover .btn-outline-inner{transform:translateX(0);}
+.bp-body{padding:5rem 2rem;max-width:940px;margin:0 auto;}
+.bp-section{margin-bottom:4.5rem;}
+.bp-section h3{font-family:'Exo 2',sans-serif;font-size:1.45rem;font-weight:800;margin-bottom:1.3rem;}
+.bp-section p{font-size:.96rem;line-height:1.95;color:rgba(255,255,255,.5);margin-bottom:.9rem;}
+.bp-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.1rem;margin-top:1.8rem;}
+.bp-card{padding:1.8rem 1.5rem;border-radius:6px;border:1px solid;background:rgba(0,0,0,.35);}
+.bp-card-icon{font-size:1.6rem;margin-bottom:.8rem;}
+.bp-card h4{font-family:'Exo 2',sans-serif;font-size:.92rem;font-weight:700;margin-bottom:.4rem;}
+.bp-card p{font-size:.83rem;color:rgba(255,255,255,.44);line-height:1.7;}
+
+/* SN page */
+.sn-page .bp-hero{background:#050505;}
+.sn-page .bp-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,255,255,.045),transparent 56%);}
+.sn-page .bp-logo{filter:drop-shadow(0 0 35px rgba(255,255,255,.22));}
+.sn-page .bp-title{color:#fff;font-family:'Bebas Neue',sans-serif;letter-spacing:.05em;}
+.sn-page .bp-section h3{color:#fff;}
+.sn-page .bp-card{border-color:rgba(255,255,255,.08);}
+.sn-page .btn-outline{border-color:#fff;color:#fff;}
+.sn-page .btn-outline-inner{background:#fff;}
+.sn-page .btn-outline:hover{color:#000;}
+
+/* CF page */
+.cf-page .bp-hero{background:#02020c;}
+.cf-page .bp-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(107,138,255,.08),transparent 56%);}
+.cf-page .bp-logo{filter:drop-shadow(0 0 35px rgba(107,138,255,.42));border-radius:14%;}
+.cf-page .bp-title{color:#6B8AFF;font-family:'Nunito',sans-serif;font-weight:900;}
+.cf-page .bp-section h3{color:#6B8AFF;}
+.cf-page .bp-card{border-color:rgba(107,138,255,.12);}
+.cf-page .btn-outline{border-color:#6B8AFF;color:#6B8AFF;}
+.cf-page .btn-outline-inner{background:#6B8AFF;}
+.cf-page .btn-outline:hover{color:#000;}
+
+/* NB page */
+.nb-page .bp-hero{background:#010a0e;}
+.nb-page .bp-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(0,180,230,.07),transparent 56%);}
+.nb-page .bp-logo{filter:drop-shadow(0 0 35px rgba(0,180,230,.42));}
+.nb-page .bp-title{color:#00b4e6;font-family:'Barlow Condensed',sans-serif;font-weight:800;letter-spacing:.1em;text-transform:uppercase;}
+.nb-page .bp-section h3{color:#00b4e6;}
+.nb-page .bp-card{border-color:rgba(0,180,230,.12);}
+.nb-page .btn-outline{border-color:#00b4e6;color:#00b4e6;}
+.nb-page .btn-outline-inner{background:#00b4e6;}
+.nb-page .btn-outline:hover{color:#000;}
+
+/* EC page */
+.ec-page .bp-hero{background:#01020a;}
+.ec-page .bp-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(80,200,220,.07),transparent 56%);}
+.ec-page .bp-logo{filter:drop-shadow(0 0 35px rgba(80,200,220,.42));border-radius:22%;width:min(150px,45vw);}
+.ec-page .bp-title{color:#50c8dc;font-family:'Lexend Mega',sans-serif;}
+.ec-page .bp-section h3{color:#50c8dc;}
+.ec-page .bp-card{border-color:rgba(80,200,220,.12);}
+.ec-page .btn-outline{border-color:#50c8dc;color:#50c8dc;}
+.ec-page .btn-outline-inner{background:#50c8dc;}
+.ec-page .btn-outline:hover{color:#000;}
+
+/* REVEAL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease;}
+.reveal.up{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-44px);transition:opacity .8s ease,transform .8s ease;}
+.reveal-left.up{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(44px);transition:opacity .8s ease,transform .8s ease;}
+.reveal-right.up{opacity:1;transform:translateX(0);}
+
+/* NOISE OVERLAY */
+body::after{
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:999;opacity:.32;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  #navbar{padding:.9rem 1.4rem;}
+  .nav-links{gap:.9rem;}
+  .nav-links a{font-size:.65rem;}
+  .about-wrap,.company-layout,.company-layout.flip{grid-template-columns:1fr;gap:2.8rem;direction:ltr;}
+  .brands-grid,.eco-grid{grid-template-columns:1fr;}
+  footer{padding:2.5rem 1.4rem 1.8rem;}
+}
+@media(max-width:480px){
+  .stats-grid{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<canvas id="bg-canvas"></canvas>
+
+<!-- ===== NAVBAR ===== -->
+<nav id="navbar">
+  <a href="#" class="nav-logo" onclick="showPage('home');return false;">
+    <img src="PhantomLabs.png" alt="Phantom Labs Group"/>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#" onclick="showPage('home');navScrollTo('about');return false;">About</a></li>
+    <li><a href="#" onclick="showPage('home');navScrollTo('ecosystem');return false;">Vision</a></li>
+    <li><a href="#" onclick="showPage('home');navScrollTo('sn');return false;">SN</a></li>
+    <li><a href="#" onclick="showPage('home');navScrollTo('classflow');return false;">ClassFlow</a></li>
+    <li><a href="#" onclick="showPage('home');navScrollTo('northbyte');return false;">NorthByte</a></li>
+    <li><a href="#" onclick="showPage('home');navScrollTo('eclipse');return false;">Eclipse</a></li>
+  </ul>
+  <button class="nav-back" id="nav-back" onclick="showPage('home')">← Home</button>
+</nav>
+
+<!-- ===================================================
+     HOME PAGE
+==================================================== -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-radial"></div>
+    <div class="hero-content">
+      <img src="PhantomLabsLLC1000x500px.png" alt="Phantom Labs Group" class="hero-logo"/>
+      <p class="hero-eyebrow" id="hero-type"></p>
+      <h1 class="hero-headline">
+        Technology.<br/><span class="hl">Creativity.</span><br/>Connected.
+      </h1>
+      <p class="hero-sub">A small independent studio building tools, systems, and experiences across digital and real-world environments.</p>
+      <a href="#about" class="btn-neon" onclick="navScrollTo('about');return false;">Enter The Lab</a>
+    </div>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-arr"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-wrap">
+      <div class="reveal-left">
+        <p class="about-eyebrow">// Who We Are</p>
+        <h2 class="about-title">One Studio.<br/><span class="dim">Many Worlds.</span></h2>
+        <div class="neon-line"></div>
+        <blockquote class="about-mission">
+          Phantom Labs exists to connect technology and real-world creativity — building tools, systems, and experiences that work together across digital and physical environments.
+        </blockquote>
+        <p class="about-body">We're a small independent studio and parent company. Each brand we operate runs independently — with its own identity, focus, and audience — but every one of them shares the same foundation: ideas, infrastructure, and intent built under one roof.</p>
+        <p class="about-body">From live events to education software to browser development, Phantom Labs is the thread that connects it all.</p>
+        <a href="#ecosystem" class="btn-neon" style="margin-top:1.4rem;" onclick="navScrollTo('ecosystem');return false;">Our Vision</a>
+      </div>
+      <div class="stats-grid reveal-right">
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label">Active Brands</div></div>
+        <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Ideas in Motion</div></div>
+        <div class="stat"><div class="stat-num">2+</div><div class="stat-label">Core Domains</div></div>
+        <div class="stat"><div class="stat-num">1</div><div class="stat-label">Unified Vision</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECOSYSTEM -->
+  <section id="ecosystem">
+    <div class="eco-inner">
+      <p class="eco-eyebrow reveal">// What We're Building</p>
+      <h2 class="eco-title reveal">One Ecosystem.<br/><span style="color:#39ff14">Four Entry Points.</span></h2>
+      <p class="eco-intro reveal">We're not building isolated projects. We're building a connected ecosystem — where each brand contributes something the others can use.</p>
+      <div class="eco-grid reveal">
+        <div class="eco-card sn">
+          <p class="eco-card-label">SN Productions</p>
+          <p>A live production platform blending sound, lighting, and media into a single precision-engineered experience — from the booth to the stage.</p>
+        </div>
+        <div class="eco-card cf">
+          <p class="eco-card-label">ClassFlow</p>
+          <p>A modern education platform focused on simplifying how students and teachers interact — designed around real classroom workflows, not assumptions.</p>
+        </div>
+        <div class="eco-card nb">
+          <p class="eco-card-label">NorthByte</p>
+          <p>The technical foundation that powers everything — software, hardware integrations, and systems that give every other brand something solid to build on.</p>
+        </div>
+        <div class="eco-card ec">
+          <p class="eco-card-label">Eclipse</p>
+          <p>A browser designed around how people actually browse — focused on performance, clarity, and giving users back control of their experience.</p>
+        </div>
+      </div>
+      <div class="eco-footer reveal">
+        Over time, these systems will connect — sharing technology, design, and infrastructure to create something bigger than any one project.<br/>
+        <span>This is just the beginning.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SN PRODUCTIONS -->
+  <section class="company-section" id="sn">
+    <div class="section-bg-glow"></div>
+    <div class="company-layout reveal">
+      <div class="company-info">
+        <p class="co-eyebrow">// Phantom Labs · Brand 01</p>
+        <h2 class="co-name glitch" data-text="SN PRODUCTIONS">SN PRODUCTIONS</h2>
+        <p class="co-tagline">Precision Production. Real Energy.</p>
+        <div class="co-bar"></div>
+        <p class="co-desc">SN Productions is the live production arm of Phantom Labs, specializing in DJ performance, advanced lighting programming, and full event systems. From dynamic lighting shows to running complete event setups, we create immersive, high-energy environments with technical precision — not just vibes.</p>
+        <div class="co-tags">
+          <span class="co-tag">Live Events</span>
+          <span class="co-tag">DJing</span>
+          <span class="co-tag">Lighting</span>
+          <span class="co-tag">Stage Design</span>
+          <span class="co-tag">Media</span>
+        </div>
+        <div style="display:flex;gap:.9rem;flex-wrap:wrap;">
+          <a href="#" class="btn-brand" onclick="showBrand('sn');return false;"><div class="btn-brand-inner"></div>Learn More</a>
+          <a href="https://snproductions.us" target="_blank" class="btn-brand" style="opacity:.5;"><div class="btn-brand-inner"></div>Visit Website ↗</a>
+        </div>
+      </div>
+      <div class="co-visual">
+        <img src="SNLogoDark.png" alt="SN Productions" class="co-logo"/>
+        <div class="co-card">
+          <h4>// What We Do</h4>
+          <ul class="feat-list">
+            <li><span class="feat-dot"></span>DJ performance — any scale, any genre</li>
+            <li><span class="feat-dot"></span>Dynamic lighting programming</li>
+            <li><span class="feat-dot"></span>Full event setup &amp; production management</li>
+            <li><span class="feat-dot"></span>Event media capture &amp; content</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLASSFLOW -->
+  <section class="company-section" id="classflow">
+    <div class="section-bg-glow"></div>
+    <div class="company-layout flip reveal">
+      <div class="company-info">
+        <p class="co-eyebrow">// Phantom Labs · Brand 02</p>
+        <h2 class="co-name">ClassFlow</h2>
+        <p class="co-tagline">Education, Reimagined.</p>
+        <div class="co-bar"></div>
+        <p class="co-desc">ClassFlow develops education-focused software and tools designed around how students and teachers actually work. The goal isn't to add more technology to classrooms — it's to make the technology already there feel effortless, so learning can stay at the center.</p>
+        <div class="co-tags">
+          <span class="co-tag">EdTech</span>
+          <span class="co-tag">Software</span>
+          <span class="co-tag">Classrooms</span>
+          <span class="co-tag">Students</span>
+        </div>
+        <div style="display:flex;gap:.9rem;flex-wrap:wrap;">
+          <a href="#" class="btn-brand" onclick="showBrand('classflow');return false;"><div class="btn-brand-inner"></div>Learn More</a>
+          <a href="https://classflow-llogan.web.app/" target="_blank" class="btn-brand" style="opacity:.5;"><div class="btn-brand-inner"></div>Visit Website ↗</a>
+        </div>
+      </div>
+      <div class="co-visual">
+        <img src="2.png" alt="ClassFlow" class="co-logo" style="border-radius:14%;width:min(200px,65%)"/>
+        <div class="co-card">
+          <h4>// What We Do</h4>
+          <ul class="feat-list">
+            <li><span class="feat-dot"></span>Classroom productivity software</li>
+            <li><span class="feat-dot"></span>Student-facing learning tools</li>
+            <li><span class="feat-dot"></span>Workflow automation for educators</li>
+            <li><span class="feat-dot"></span>Cross-platform apps for any device</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NORTHBYTE -->
+  <section class="company-section" id="northbyte">
+    <div class="section-bg-glow"></div>
+    <div class="company-layout reveal">
+      <div class="company-info">
+        <p class="co-eyebrow">// Phantom Labs · Brand 03</p>
+        <h2 class="co-name">NORTHBYTE</h2>
+        <p class="co-tagline">Software. Systems. Infrastructure.</p>
+        <div class="co-bar"></div>
+        <p class="co-desc">NorthByte is the technical division of Phantom Labs, focused on both software and physical systems. From full-stack applications to hardware integrations and connected environments, NorthByte builds the infrastructure that powers everything we create — and takes on external projects where precision and reliability actually matter.</p>
+        <div class="co-tags">
+          <span class="co-tag">Software Dev</span>
+          <span class="co-tag">Hardware</span>
+          <span class="co-tag">Systems</span>
+          <span class="co-tag">Full-Stack</span>
+          <span class="co-tag">Since 2025</span>
+        </div>
+        <div style="display:flex;gap:.9rem;flex-wrap:wrap;">
+          <a href="#" class="btn-brand" onclick="showBrand('northbyte');return false;"><div class="btn-brand-inner"></div>Learn More</a>
+          <a href="https://example.com" target="_blank" class="btn-brand" style="opacity:.5;"><div class="btn-brand-inner"></div>Visit Website ↗</a>
+        </div>
+      </div>
+      <div class="co-visual">
+        <img src="logo.png" alt="NorthByte" class="co-logo"/>
+        <div class="co-card">
+          <h4>// What We Do</h4>
+          <ul class="feat-list">
+            <li><span class="feat-dot"></span>Custom software &amp; full-stack development</li>
+            <li><span class="feat-dot"></span>Hardware integration &amp; physical systems</li>
+            <li><span class="feat-dot"></span>Internal infrastructure for all PL brands</li>
+            <li><span class="feat-dot"></span>Developer tools &amp; open source projects</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ECLIPSE -->
+  <section class="company-section" id="eclipse">
+    <div class="section-bg-glow"></div>
+    <div class="company-layout flip reveal">
+      <div class="company-info">
+        <p class="co-eyebrow">// Phantom Labs · Brand 04</p>
+        <h2 class="co-name">Eclipse</h2>
+        <p class="co-tagline">Browsing, Focused.</p>
+        <div class="co-bar"></div>
+        <p class="co-desc">Eclipse is a custom web browser focused on performance, simplicity, and user experience. Built using modern technologies, it aims to provide a faster, cleaner, and more intuitive way to browse — one that's designed around real user behavior, not legacy assumptions.</p>
+        <div class="co-tags">
+          <span class="co-tag">Browser</span>
+          <span class="co-tag">Performance</span>
+          <span class="co-tag">UX</span>
+          <span class="co-tag">Privacy-Focused</span>
+        </div>
+        <div style="display:flex;gap:.9rem;flex-wrap:wrap;">
+          <a href="#" class="btn-brand" onclick="showBrand('eclipse');return false;"><div class="btn-brand-inner"></div>Learn More</a>
+          <a href="https://lloganisawsome.github.io/Eclipse/" target="_blank" class="btn-brand" style="opacity:.5;"><div class="btn-brand-inner"></div>Visit Website ↗</a>
+        </div>
+      </div>
+      <div class="co-visual">
+        <img src="icon-1024.png" alt="Eclipse" class="co-logo" style="border-radius:22%;width:min(180px,60%)"/>
+        <div class="co-card">
+          <h4>// What We're Building</h4>
+          <ul class="feat-list">
+            <li><span class="feat-dot"></span>Speed-focused browsing experience</li>
+            <li><span class="feat-dot"></span>Privacy-aware architecture</li>
+            <li><span class="feat-dot"></span>Clean, minimal UI without the noise</li>
+            <li><span class="feat-dot"></span>Smarter tab &amp; session management</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANDS GRID -->
+  <section id="brands">
+    <div class="brands-header reveal">
+      <p class="brands-eyebrow">// The Family</p>
+      <h2>Everything We're <span style="color:#39ff14">Building</span></h2>
+      <p>Four brands. One ecosystem. Click to go deeper.</p>
+    </div>
+    <div class="brands-grid">
+      <a href="#" class="brand-tile sn reveal" onclick="showBrand('sn');return false;">
+        <img src="SNLogoDark.png" alt="SN Productions" class="tile-logo"/>
+        <div class="tile-name">SN Productions</div>
+        <p class="tile-desc">DJ performance, lighting programming, and full live event production.</p>
+        <span class="tile-arrow">↗</span>
+      </a>
+      <a href="#" class="brand-tile cf reveal" onclick="showBrand('classflow');return false;" style="transition-delay:.07s">
+        <img src="2.png" alt="ClassFlow" class="tile-logo" style="border-radius:12%;height:46px;width:46px;object-fit:cover;"/>
+        <div class="tile-name">ClassFlow</div>
+        <p class="tile-desc">Education software and tools designed for students and classrooms.</p>
+        <span class="tile-arrow">↗</span>
+      </a>
+      <a href="#" class="brand-tile nb reveal" onclick="showBrand('northbyte');return false;" style="transition-delay:.14s">
+        <img src="logo.png" alt="NorthByte" class="tile-logo"/>
+        <div class="tile-name">NorthByte</div>
+        <p class="tile-desc">Software, hardware, and systems — the technical core of Phantom Labs.</p>
+        <span class="tile-arrow">↗</span>
+      </a>
+      <a href="#" class="brand-tile ec reveal" onclick="showBrand('eclipse');return false;" style="transition-delay:.21s">
+        <img src="icon-1024.png" alt="Eclipse" class="tile-logo" style="border-radius:18%;height:46px;width:46px;object-fit:cover;"/>
+        <div class="tile-name">Eclipse</div>
+        <p class="tile-desc">A web browser focused on performance, simplicity, and real UX.</p>
+        <span class="tile-arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <div class="future-line">
+    <p>More projects. More systems. <span>More coming soon.</span></p>
+  </div>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-logo"><img src="PhantomLabs.png" alt="Phantom Labs"/></div>
+        <div class="footer-links">
+          <a href="#" onclick="showBrand('sn');return false;">SN Productions</a>
+          <a href="#" onclick="showBrand('classflow');return false;">ClassFlow</a>
+          <a href="#" onclick="showBrand('northbyte');return false;">NorthByte</a>
+          <a href="#" onclick="showBrand('eclipse');return false;">Eclipse</a>
+        </div>
+      </div>
+      <div class="footer-bottom">© 2025 Phantom Labs Group — Building the future, one project at a time.</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================================================
+     SN PRODUCTIONS PAGE
+==================================================== -->
+<div class="page brand-page sn-page" id="page-sn">
+  <div class="bp-hero">
+    <div class="bp-hero-content">
+      <img src="SNLogoDark.png" alt="SN Productions" class="bp-logo"/>
+      <h1 class="bp-title">SN Productions</h1>
+      <p class="bp-sub">Live event production, DJ performance, advanced lighting programming, and media. Built around technical precision and real energy.</p>
+      <a href="https://snproductions.us" target="_blank" class="btn-outline">
+        <div class="btn-outline-inner"></div>
+        Visit Website ↗
+      </a>
+    </div>
+  </div>
+  <div class="bp-body">
+    <div class="bp-section reveal">
+      <h3>About SN Productions</h3>
+      <p>SN Productions is Phantom Labs' live event and production brand. It was built around a simple idea: production quality matters. Not just the music, not just the lights — all of it together, working as a system.</p>
+      <p>We specialize in DJ performance across genres and styles, dynamic lighting shows , and full event production from setup to teardown. Whether it's a small gathering or a large-scale event, SN Productions approaches every setup with the same level of technical care and creative intent.</p>
+      <p>This isn't just "we DJ." We design the environment. We run the gear. We make it actually work.</p>
+    </div>
+    <div class="bp-section reveal">
+      <h3>Services</h3>
+      <div class="bp-cards">
+        <div class="bp-card"><div class="bp-card-icon">🎵</div><h4>DJ Performance</h4><p>Live sets for events of any size — genre-flexible, crowd-aware, energy-driven.</p></div>
+        <div class="bp-card"><div class="bp-card-icon">💡</div><h4>Lighting Design</h4><p>Dynamic lighting shows . Architectural, stage, and event lighting that hits right.</p></div>
+        <div class="bp-card"><div class="bp-card-icon">🎬</div><h4>Event Media</h4><p>Photography, videography, and real-time media capture — so nothing gets lost.</p></div>
+        <div class="bp-card"><div class="bp-card-icon">🎪</div><h4>Full Production</h4><p>End-to-end event production. Planning, setup, execution, and teardown handled entirely.</p></div>
+      </div>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(255,255,255,.07)">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-logo"><img src="PhantomLabs.png" alt="Phantom Labs"/></div>
+        <div class="footer-links"><a href="#" onclick="showPage('home');return false;">← Phantom Labs</a></div>
+      </div>
+      <div class="footer-bottom">© 2025 SN Productions · A Phantom Labs Brand</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================================================
+     CLASSFLOW PAGE
+==================================================== -->
+<div class="page brand-page cf-page" id="page-classflow">
+  <div class="bp-hero">
+    <div class="bp-hero-content">
+      <img src="2.png" alt="ClassFlow" class="bp-logo" style="border-radius:14%;width:min(160px,48vw)"/>
+      <h1 class="bp-title">ClassFlow</h1>
+      <p class="bp-sub">Education software built around how students and teachers actually work. Less friction. More learning.</p>
+      <a href="https://classflow-llogan.web.app/" target="_blank" class="btn-outline">
+        <div class="btn-outline-inner"></div>
+        Visit Website ↗
+      </a>
+    </div>
+  </div>
+  <div class="bp-body">
+    <div class="bp-section reveal">
+      <h3>About ClassFlow</h3>
+      <p>ClassFlow is Phantom Labs' education technology brand, focused on building software that makes the classroom experience — for both students and teachers — genuinely better.</p>
+      <p>Most edtech tools are designed by people who haven't been in a classroom recently. ClassFlow is different. We build around real workflows, real frustrations, and what people actually need when they're in the middle of a school day.</p>
+      <p>ClassFlow is currently in active development. The goal is a connected suite of tools that works across any device, integrates with existing school systems, and grows with the needs of its users.</p>
+    </div>
+    <div class="bp-section reveal">
+      <h3>What We're Building</h3>
+      <div class="bp-cards">
+        <div class="bp-card"><div class="bp-card-icon">📚</div><h4>Classroom Tools</h4><p>Software that streamlines how teachers manage assignments, attendance, and student engagement.</p></div>
+        <div class="bp-card"><div class="bp-card-icon">🎓</div><h4>Student Apps</h4><p>Clean, distraction-free tools that help students stay organized and on top of their work.</p></div>
+        <div class="bp-card"><div class="bp-card-icon">⚙️</div><h4>Workflow Automation</h4><p>Automating the repetitive stuff — so teachers can focus on the actual teaching.</p></div>
+        <div class="bp-card"><div class="bp-card-icon">🌐</div><h4>Cross-Platform</h4><p>Works on any device. Desktop, tablet, mobile — wherever students actually are.</p></div>
+      </div>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(107,138,255,.12)">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-logo"><img src="PhantomLabs.png" alt="Phantom Labs"/></div>
+        <div class="footer-links"><a href="#" onclick="showPage('home');return false;">← Phantom Labs</a></div>
+      </div>
+      <div class="footer-bottom">© 2025 ClassFlow · A Phantom Labs Brand</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================================================
+     NORTHBYTE PAGE
+==================================================== -->
+<div class="page brand-page nb-page" id="page-northbyte">
+  <div class="bp-hero">
+    <div class="bp-hero-content">
+      <img src="logo.png" alt="NorthByte" class="bp-logo"/>
+      <h1 class="bp-title">NORTHBYTE</h1>
+      <p class="bp-sub">Software development, hardware systems, and technical infrastructure. The engine behind Phantom Labs — and anything that needs to be built right.</p>
+      <a href="https://example.com" target="_blank" class="btn-outline">
+        <div class="btn-outline-inner"></div>
+        Visit Website ↗
+      </a>
+    </div>
+  </div>
+  <div class="bp-body">
+    <div class="bp-section reveal">
+      <h3>About NorthByte</h3>
+      <p>NorthByte is the technical division of Phantom Labs. Founded in 2025, it exists to handle the hard parts — software development, hardware integration, system architecture, and the kind of under-the-hood work that makes everything else possible.</p>
+      <p>Internally, NorthByte powers other Phantom Labs brands. Externally, it takes on software and systems projects where reliability and technical precision actually matter. No over-promising. Just solid work.</p>
+      <p>The "byte" is intentional — but so is "north." This is a brand about direction. Straightforward, technically-grounded, and built to last.</p>
+    </div>
+    <div class="bp-section reveal">
+      <h3>What We Build</h3>
+      <div class="bp-cards">
+        <div class="bp-card"><div class="bp-card-icon">💻</div><h4>Custom Software</h4><p>Full-stack applications, web tools, desktop software, and everything in between — built clean.</p></div>
+        <div class="bp-card"><div class="bp-card-icon">🔩</div><h4>Hardware Systems</h4><p>Physical systems, hardware integrations, and connected environments where software meets the real world.</p></div>
+        <div class="bp-card"><div class="bp-card-icon">🏗️</div><h4>PL Infrastructure</h4><p>The internal technical backbone that powers ClassFlow, Eclipse, and every other Phantom Labs project.</p></div>
+        <div class="bp-card"><div class="bp-card-icon">🌍</div><h4>Open Source</h4><p>Contributing to and releasing open-source tools that benefit the broader developer community.</p></div>
+      </div>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(0,180,230,.12)">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-logo"><img src="PhantomLabs.png" alt="Phantom Labs"/></div>
+        <div class="footer-links"><a href="#" onclick="showPage('home');return false;">← Phantom Labs</a></div>
+      </div>
+      <div class="footer-bottom">© 2025 NorthByte · A Phantom Labs Brand</div>
+    </div>
+  </footer>
+</div>
+
+<!-- ===================================================
+     ECLIPSE PAGE
+==================================================== -->
+<div class="page brand-page ec-page" id="page-eclipse">
+  <div class="bp-hero">
+    <div class="bp-hero-content">
+      <img src="icon-1024.png" alt="Eclipse" class="bp-logo" style="border-radius:22%;width:min(140px,42vw)"/>
+      <h1 class="bp-title">Eclipse</h1>
+      <p class="bp-sub">A custom web browser focused on performance, simplicity, and user experience. Designed around how people actually browse.</p>
+      <a href="https://lloganisawsome.github.io/Eclipse/" target="_blank" class="btn-outline">
+        <div class="btn-outline-inner"></div>
+        Visit Website ↗
+      </a>
+    </div>
+  </div>
+  <div class="bp-body">
+    <div class="bp-section reveal">
+      <h3>About Eclipse</h3>
+      <p>Eclipse is a web browser project focused on doing one thing well: giving users a browsing experience that actually respects their time, attention, and hardware. Most browsers have become bloated, intrusive, or optimized for someone else's agenda. Eclipse is aiming to fix that.</p>
+      <p>The project is currently in active development, built using modern web technologies with a focus on performance, clean UI design, and keeping the user in control. It's an ambitious project — and honest about that.</p>
+      <p>Eclipse is also a natural fit for the Phantom Labs ecosystem — as NorthByte builds out more tooling and ClassFlow develops its platform, Eclipse becomes an interesting integration point for the future.</p>
+    </div>
+    <div class="bp-section reveal">
+      <h3>What We're Focused On</h3>
+      <div class="bp-cards">
+        <div class="bp-card"><div class="bp-card-icon">⚡</div><h4>Performance</h4><p>A browsing experience that feels noticeably faster and lighter than what you're used to.</p></div>
+        <div class="bp-card"><div class="bp-card-icon">🔒</div><h4>Privacy-Aware</h4><p>Designed to minimize unnecessary data collection. Your browsing stays yours.</p></div>
+        <div class="bp-card"><div class="bp-card-icon">🎨</div><h4>Clean Interface</h4><p>A minimal UI that gets out of the way. Everything you need, nothing you don't.</p></div>
+        <div class="bp-card"><div class="bp-card-icon">📑</div><h4>Tab Management</h4><p>Smarter tab and session handling for people who actually have a lot open at once.</p></div>
+      </div>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(80,200,220,.12)">
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-logo"><img src="PhantomLabs.png" alt="Phantom Labs"/></div>
+        <div class="footer-links"><a href="#" onclick="showPage('home');return false;">← Phantom Labs</a></div>
+      </div>
+      <div class="footer-bottom">© 2025 Eclipse · A Phantom Labs Brand</div>
+    </div>
+  </footer>
+</div>
+
+<script>
+// ===================== PAGE SYSTEM =====================
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const pg = document.getElementById('page-' + id);
+  if (pg) pg.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  const back = document.getElementById('nav-back');
+  const links = document.getElementById('nav-links');
+  if (id === 'home') {
+    back.style.display = 'none';
+    links.style.display = 'flex';
+  } else {
+    back.style.display = 'block';
+    links.style.display = 'none';
+  }
+  setTimeout(triggerReveal, 80);
+}
+function showBrand(b) { showPage(b); }
+function navScrollTo(id) {
+  setTimeout(() => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  }, 150);
+}
+
+// ===================== CURSOR =====================
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+});
+(function animRing() {
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animRing);
+})();
+document.addEventListener('mouseover', e => {
+  const over = e.target.closest('a,button,.brand-tile,.stat,.btn-neon,.eco-card,.btn-brand,.btn-outline');
+  if (over) {
+    cur.style.width = '16px'; cur.style.height = '16px';
+    ring.style.transform = 'translate(-50%,-50%) scale(1.55)';
+    ring.style.borderColor = 'rgba(57,255,20,.7)';
+  } else {
+    cur.style.width = '8px'; cur.style.height = '8px';
+    ring.style.transform = 'translate(-50%,-50%) scale(1)';
+    ring.style.borderColor = 'rgba(57,255,20,.4)';
+  }
+});
+
+// ===================== PARTICLES =====================
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H;
+function resizeC() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resizeC(); window.addEventListener('resize', resizeC);
+const PAL = ['#39ff14','#39ff14','#39ff14','#39ff14','#ffffff','#6B8AFF','#00b4e6','#50c8dc'];
+const pts = [];
+for (let i = 0; i < 120; i++) {
+  pts.push({
+    x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight,
+    r: Math.random() * 1.4 + 0.2,
+    dx: (Math.random() - .5) * .2, dy: (Math.random() - .5) * .2,
+    c: PAL[Math.floor(Math.random() * PAL.length)],
+    a: Math.random() * .3 + .04,
+    ph: Math.random() * Math.PI * 2, ps: Math.random() * .016 + .004
+  });
+}
+(function draw() {
+  ctx.clearRect(0, 0, W, H);
+  pts.forEach(p => {
+    p.ph += p.ps;
+    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fillStyle = p.c; ctx.globalAlpha = p.a * (.5 + .5 * Math.sin(p.ph));
+    ctx.fill();
+    p.x += p.dx; p.y += p.dy;
+    if (p.x < 0 || p.x > W) p.dx *= -1;
+    if (p.y < 0 || p.y > H) p.dy *= -1;
+  });
+  ctx.globalAlpha = 1;
+  requestAnimationFrame(draw);
+})();
+
+// ===================== SCROLL REVEAL =====================
+function triggerReveal() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('up'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el => {
+    el.classList.remove('up'); obs.observe(el);
+  });
+}
+triggerReveal();
+
+// ===================== NAV GLOW =====================
+const nav = document.getElementById('navbar');
+const SEC = {
+  hero:      'rgba(57,255,20,.22)',
+  about:     'rgba(57,255,20,.16)',
+  ecosystem: 'rgba(57,255,20,.16)',
+  sn:        'rgba(255,255,255,.16)',
+  classflow: 'rgba(107,138,255,.28)',
+  northbyte: 'rgba(0,180,230,.28)',
+  eclipse:   'rgba(80,200,220,.28)',
+  brands:    'rgba(57,255,20,.16)'
+};
+const nObs = new IntersectionObserver(en => {
+  en.forEach(e => {
+    if (e.isIntersecting) {
+      const c = SEC[e.target.id];
+      if (c) { nav.style.borderBottomColor = c; nav.style.boxShadow = '0 1px 0 0 ' + c; }
+    }
+  });
+}, { threshold: 0.3 });
+Object.keys(SEC).forEach(id => { const el = document.getElementById(id); if (el) nObs.observe(el); });
+
+// ===================== TYPING EFFECT =====================
+const typeEl = document.getElementById('hero-type');
+const typeStr = 'Independent Studio & Parent Company';
+let ti = 0;
+function typeIt() { if (ti < typeStr.length) { typeEl.textContent += typeStr[ti++]; setTimeout(typeIt, 52); } }
+setTimeout(typeIt, 800);
+
+// ===================== STAGGER DELAYS =====================
+document.querySelectorAll('.stat').forEach((s, i) => { s.style.transitionDelay = (i * .09) + 's'; });
+document.querySelectorAll('.eco-card').forEach((c, i) => { c.style.transitionDelay = (i * .07) + 's'; });
+</script>
+</body>
+</html>
