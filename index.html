@@ -4,9 +4,9 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Phantom Labs Group</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Rajdhani:wght@300;400;500;600;700&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Lexend+Mega:wght@100..900&family=Space+Mono:wght@400;700&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="preconnect" href__="https://fonts.googleapis.com">
+<link rel="preconnect" href__="https://fonts.gstatic.com" crossorigin>
+<link href__="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Rajdhani:wght@300;400;500;600;700&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Lexend+Mega:wght@100..900&family=Space+Mono:wght@400;700&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -294,6 +294,8 @@ body{
 .brand-tile.un1t-t::before{background:radial-gradient(circle at 50% 0%,rgba(255,255,255,.04),transparent 58%);}
 .brand-tile.lightspace-t{background:#0a0800;border:1px solid rgba(255,210,60,.12);}
 .brand-tile.lightspace-t::before{background:radial-gradient(circle at 50% 0%,rgba(255,210,60,.065),transparent 58%);}
+.brand-tile.tac-t{background:#020a04;border:1px solid rgba(34,139,34,.12);}
+.brand-tile.tac-t::before{background:radial-gradient(circle at 50% 0%,rgba(34,139,34,.065),transparent 58%);}
 .tile-top{display:flex;align-items:center;gap:.7rem;}
 .tile-logo{height:40px;width:40px;object-fit:contain;border-radius:6px;flex-shrink:0;}
 .tile-name-wrap{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;}
@@ -306,6 +308,7 @@ body{
 .soundkit-t .tile-name{color:#64C8FF;}
 .un1t-t .tile-name{color:#fff;}
 .lightspace-t .tile-name{color:#FFD23C;}
+.tac-t .tile-name{color:#228B22;}
 .tile-desc{font-size:.82rem;color:rgba(255,255,255,.38);line-height:1.7;}
 .tile-arrow{position:absolute;bottom:1.4rem;right:1.4rem;font-size:1rem;opacity:.15;transition:opacity .28s,transform .28s;}
 .brand-tile:hover .tile-arrow{opacity:1;transform:translate(3px,-3px);}
@@ -356,6 +359,8 @@ body{
 .eco-card.un1t::before{background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);}
 .eco-card.lightspace{border-color:rgba(255,210,60,.12);}
 .eco-card.lightspace::before{background:linear-gradient(90deg,transparent,rgba(255,210,60,.35),transparent);}
+.eco-card.tac{border-color:rgba(34,139,34,.12);}
+.eco-card.tac::before{background:linear-gradient(90deg,transparent,rgba(34,139,34,.35),transparent);}
 .eco-card-label{
   font-family:'Rajdhani',sans-serif;font-size:.68rem;font-weight:700;
   letter-spacing:.18em;text-transform:uppercase;margin-bottom:.5rem;
@@ -368,6 +373,7 @@ body{
 .soundkit .eco-card-label{color:#64C8FF;}
 .un1t .eco-card-label{color:rgba(255,255,255,.5);}
 .lightspace .eco-card-label{color:#FFD23C;}
+.tac .eco-card-label{color:#228B22;}
 .eco-card p{font-size:.86rem;color:rgba(255,255,255,.45);line-height:1.8;}
 .eco-footer{
   text-align:center;font-size:.85rem;color:rgba(255,255,255,.28);
@@ -527,6 +533,29 @@ body{
 #lightspace .co-logo{filter:drop-shadow(0 0 28px rgba(255,210,60,.4));}
 #lightspace .co-card{border-color:rgba(255,210,60,.1);}
 #lightspace .feat-dot{background:#FFD23C;box-shadow:0 0 5px rgba(255,210,60,.7);}
+
+/* ===== TAC BRAND STYLES ===== */
+#tac{background:#020a04;}
+#tac .section-bg-glow{background:radial-gradient(ellipse at 16% 50%,rgba(34,139,34,.07),transparent 52%);}
+#tac .co-name{font-family:'Exo 2',sans-serif;font-size:clamp(2.4rem,4.5vw,4rem);font-weight:900;color:#228B22;text-shadow:0 0 50px rgba(34,139,34,.45);letter-spacing:.08em;text-transform:uppercase;}
+#tac .co-bar{background:linear-gradient(90deg,#228B22,transparent);box-shadow:0 0 9px rgba(34,139,34,.4);}
+#tac .co-tag{background:rgba(34,139,34,.08);color:#2eb82e;border:1px solid rgba(34,139,34,.18);}
+#tac .btn-brand{border-color:#228B22;color:#228B22;}
+#tac .btn-brand-inner{background:#228B22;}
+#tac .btn-brand:hover{color:#000;box-shadow:0 0 25px rgba(34,139,34,.38);}
+#tac .co-logo{filter:drop-shadow(0 0 28px rgba(34,139,34,.45));}
+#tac .co-card{border-color:rgba(34,139,34,.1);}
+#tac .feat-dot{background:#228B22;box-shadow:0 0 5px rgba(34,139,34,.7);}
+
+.tac-page .bp-hero{background:#020a04;}
+.tac-page .bp-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(34,139,34,.07),transparent 56%);}
+.tac-page .bp-logo{filter:drop-shadow(0 0 35px rgba(34,139,34,.45));}
+.tac-page .bp-title{color:#228B22;font-family:'Exo 2',sans-serif;font-weight:900;letter-spacing:.08em;text-transform:uppercase;}
+.tac-page .bp-section h3{color:#228B22;}
+.tac-page .bp-card{border-color:rgba(34,139,34,.1);}
+.tac-page .btn-outline{border-color:#228B22;color:#228B22;}
+.tac-page .btn-outline-inner{background:#228B22;}
+.tac-page .btn-outline:hover{color:#000;}
 
 /* ===================== BRAND PAGES ===================== */
 .bp-hero{
@@ -695,16 +724,16 @@ body::after{
 
 <!-- ===== NAVBAR ===== -->
 <nav id="navbar">
-  <a href="#" class="nav-logo" onclick="showPage('home');return false;">
+  <a href__="#" class="nav-logo" onclick="showPage('home');return false;">
     <img src="PhantomLabs.png" alt="Phantom Labs Group"/>
   </a>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()">
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links" id="nav-links">
-    <li><a href="#" onclick="mobileNavClick();showPage('home');navScrollTo('about');return false;">About</a></li>
-    <li><a href="#" onclick="mobileNavClick();showPage('home');navScrollTo('brands');return false;">Brands</a></li>
-    <li><a href="#" onclick="mobileNavClick();showPage('home');navScrollTo('ecosystem');return false;">Ecosystem</a></li>
+    <li><a href__="#" onclick="mobileNavClick();showPage('home');navScrollTo('about');return false;">About</a></li>
+    <li><a href__="#" onclick="mobileNavClick();showPage('home');navScrollTo('brands');return false;">Brands</a></li>
+    <li><a href__="#" onclick="mobileNavClick();showPage('home');navScrollTo('ecosystem');return false;">Ecosystem</a></li>
   </ul>
   <button class="nav-back" id="nav-back" onclick="showPage('home')">← Home</button>
 </nav>
@@ -725,7 +754,7 @@ body::after{
         Technology.<br/><span class="hl">Creativity.</span><br/>Connected.
       </h1>
       <p class="hero-sub">A small independent studio building tools, systems, and experiences across digital and real-world environments.</p>
-      <a href="#about" class="btn-neon" onclick="navScrollTo('about');return false;">Enter The Lab</a>
+      <a href__="#about" class="btn-neon" onclick="navScrollTo('about');return false;">Enter The Lab</a>
     </div>
     <div class="scroll-hint">
       <span>Scroll</span>
@@ -747,7 +776,7 @@ body::after{
         <p class="about-body">From live events to education software to browser development, Phantom Labs is the thread that connects it all.</p>
       </div>
       <div class="stats-grid reveal-right">
-        <div class="stat"><div class="stat-num">8</div><div class="stat-label">Active Brands</div></div>
+        <div class="stat"><div class="stat-num">9</div><div class="stat-label">Active Brands</div></div>
         <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Ideas in Motion</div></div>
         <div class="stat"><div class="stat-num">4+</div><div class="stat-label">Core Domains</div></div>
         <div class="stat"><div class="stat-num">1</div><div class="stat-label">Unified Vision</div></div>
@@ -760,7 +789,7 @@ body::after{
     <div class="brands-header reveal">
       <p class="brands-eyebrow">// The Family</p>
       <h2>Everything We're <span style="color:#39ff14">Building</span></h2>
-      <p>Eight brands. One ecosystem. Click to go deeper.</p>
+      <p>Nine brands. One ecosystem. Click to go deeper.</p>
     </div>
     <div class="brands-grid" id="brands-grid">
       <!-- Populated by JS from config -->
@@ -771,7 +800,7 @@ body::after{
   <section id="ecosystem">
     <div class="eco-inner">
       <p class="eco-eyebrow reveal">// What We're Building</p>
-      <h2 class="eco-title reveal">One Ecosystem.<br/><span style="color:#39ff14">Eight Entry Points.</span></h2>
+      <h2 class="eco-title reveal">One Ecosystem.<br/><span style="color:#39ff14">Nine Entry Points.</span></h2>
       <p class="eco-intro reveal">We're not building isolated projects. We're building a connected ecosystem — where each brand contributes something the others can use.</p>
       <div class="eco-grid reveal" id="eco-grid">
         <!-- Populated by JS from config -->
@@ -1058,6 +1087,39 @@ const COMPANIES = {
       {icon:"💡",title:"Creative Direction",desc:"Visual identity tying Phantom Labs' presence together."}
     ],
     footerBorder: "rgba(255,210,60,.12)"
+  },
+  tac: {
+    beta: false,
+    website: { enabled: false, url: "" },
+    name: "TAC",
+    pageClass: "tac-page",
+    tileClass: "tac-t",
+    ecoClass: "tac",
+    brandNum: "09",
+    logo: "TAC.png",
+    logoStyle: "width:min(200px,65%)",
+    nameFontHTML: '<h2 class="co-name">TAC</h2>',
+    tagline: "The Ultimate Social Hub.",
+    desc: "TAC is a social hub packed with games, tools, creativity, and community — all in one place. From a built-in browser and music player to memes, chat, a casino, and even a DVD logo screensaver, TAC is where fun and function collide. Hang out, play, create, and connect.",
+    tags: ["Social Hub","Games","Music","Chat","Tools","Community","Creative"],
+    cardTitle: "// What's Inside",
+    features: ["Social feed, chat & member community","Built-in browser, music player & TACTube","Games — Neon Drift Tag, Spacebar Clicker, Casino & more","Tools — Calculator, Clock, Notes, To-Do, Draw & Themes"],
+    tileDesc: "A social hub full of games, tools, music, chat, and creative fun — all in one place.",
+    ecoDesc: "A social hub that brings together games, music, chat, tools, and community — a place where fun and function live side by side under one roof.",
+    pageTitle: "TAC",
+    pageTitleHTML: '<h1 class="bp-title">TAC</h1>',
+    pageSub: "The ultimate social hub — games, music, tools, chat, and community all packed into one place. Est. 2024.",
+    pageAbout: ["TAC is a social hub built for fun, creativity, and community. It's not just one thing — it's everything you'd want in a hangout spot, packed into a single platform.","From a full social feed and member profiles to a built-in browser, music player, and TACTube video platform — TAC has it all. Need tools? There's a calculator, clock, notes, to-do lists, and a draw canvas. Want to play? Hit up the Casino, Spacebar Clicker, Neon Drift Tag, or the classic DVD Logo screensaver.","TAC also features a mod dashboard, staff applications, news feed, memes section, theme customization, and the legendary Loftis Button. It's a community-first platform where there's always something to do."],
+    pageCardsTitle: "Hub Features",
+    pageCards: [
+      {icon:"💬",title:"Social & Chat",desc:"Social feed, real-time chat, member profiles, and community features."},
+      {icon:"🎮",title:"Games & Fun",desc:"Neon Drift Tag, Spacebar Clicker, Casino, Leak Crush, DVD Logo & more."},
+      {icon:"🎵",title:"Music & Media",desc:"Built-in music player, TACTube video platform, and memes section."},
+      {icon:"🛠️",title:"Tools & Utilities",desc:"Calculator, Clock, Notes, To-Do, Draw canvas, Browser & Phone."},
+      {icon:"🌐",title:"Browser & Dev",desc:"Built-in web browser and developer tools — browse without leaving TAC."},
+      {icon:"🎨",title:"Themes & More",desc:"Custom themes, Loftis Button, news feed, mod dashboard & staff applications."}
+    ],
+    footerBorder: "rgba(34,139,34,.12)"
   }
 };
 
@@ -1074,7 +1136,7 @@ function betaHTML(co) {
 function websiteBtn(co, cls) {
   if (!co.website.enabled) return '';
   const url = co.website.url && co.website.url.trim() !== '' ? co.website.url : '404.html';
-  return `<a href="${url}" target="_blank" class="${cls}" style="opacity:.55;"><div class="${cls === 'btn-brand' ? 'btn-brand-inner' : 'btn-outline-inner'}"></div>Visit Website ↗</a>`;
+  return `<a href__="${url}" target="_blank" class="${cls}" style="opacity:.55;"><div class="${cls === 'btn-brand' ? 'btn-brand-inner' : 'btn-outline-inner'}"></div>Visit Website ↗</a>`;
 }
 
 // Build brands grid
@@ -1129,7 +1191,7 @@ companyKeys.forEach((key, i) => {
         <p class="co-desc">${co.desc}</p>
         <div class="co-tags">${co.tags.map(t => `<span class="co-tag">${t}</span>`).join('')}</div>
         <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
-          <a href="#" class="btn-brand" onclick="showBrand('${key}');return false;"><div class="btn-brand-inner"></div>Learn More</a>
+          <a href__="#" class="btn-brand" onclick="showBrand('${key}');return false;"><div class="btn-brand-inner"></div>Learn More</a>
           ${websiteBtn(co, 'btn-brand')}
         </div>
       </div>
@@ -1150,7 +1212,7 @@ companyKeys.forEach((key, i) => {
 const footerLinks = document.getElementById('footer-links');
 companyKeys.forEach(key => {
   const co = COMPANIES[key];
-  footerLinks.innerHTML += `<a href="#" onclick="showBrand('${key}');return false;">${co.name}</a>`;
+  footerLinks.innerHTML += `<a href__="#" onclick="showBrand('${key}');return false;">${co.name}</a>`;
 });
 
 // Build brand pages
@@ -1184,7 +1246,7 @@ companyKeys.forEach(key => {
       <div class="footer-inner">
         <div class="footer-top">
           <div class="footer-logo"><img src="PhantomLabs.png" alt="Phantom Labs"/></div>
-          <div class="footer-links"><a href="#" onclick="showPage('home');return false;">← Phantom Labs</a></div>
+          <div class="footer-links"><a href__="#" onclick="showPage('home');return false;">← Phantom Labs</a></div>
         </div>
         <div class="footer-bottom">© 2025 ${co.name} · A Phantom Labs Brand</div>
       </div>
@@ -1265,7 +1327,7 @@ const ctx = canvas.getContext('2d');
 let W, H;
 function resizeC() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
 resizeC(); window.addEventListener('resize', resizeC);
-const PAL = ['#39ff14','#39ff14','#ffffff','#6B8AFF','#00b4e6','#50c8dc','#26BC9C','#64C8FF','#FFD23C'];
+const PAL = ['#39ff14','#39ff14','#ffffff','#6B8AFF','#00b4e6','#50c8dc','#26BC9C','#64C8FF','#FFD23C','#228B22'];
 const pts = [];
 for (let i = 0; i < 90; i++) {
   pts.push({
@@ -1309,7 +1371,7 @@ const SEC = {
   hero:'rgba(57,255,20,.22)', about:'rgba(57,255,20,.16)', ecosystem:'rgba(57,255,20,.16)', brands:'rgba(57,255,20,.16)',
   sn:'rgba(255,255,255,.16)', classflow:'rgba(107,138,255,.28)', northbyte:'rgba(0,180,230,.28)',
   eclipse:'rgba(80,200,220,.28)', nibble:'rgba(38,188,156,.28)', soundkit:'rgba(100,200,255,.28)',
-  un1t:'rgba(255,255,255,.16)', lightspace:'rgba(255,210,60,.28)'
+  un1t:'rgba(255,255,255,.16)', lightspace:'rgba(255,210,60,.28)', tac:'rgba(34,139,34,.28)'
 };
 const nObs = new IntersectionObserver(en => {
   en.forEach(e => {
