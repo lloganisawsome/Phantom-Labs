@@ -1,12 +1,13 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Phantom Labs Group</title>
-<link rel="preconnect" href__="https://fonts.googleapis.com">
-<link rel="preconnect" href__="https://fonts.gstatic.com" crossorigin>
-<link href__="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Rajdhani:wght@300;400;500;600;700&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Lexend+Mega:wght@100..900&family=Space+Mono:wght@400;700&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&family=Rajdhani:wght@300;400;500;600;700&family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800;900&family=Nunito:wght@400;500;600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Lexend+Mega:wght@100..900&family=Space+Mono:wght@400;700&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -724,16 +725,16 @@ body::after{
 
 <!-- ===== NAVBAR ===== -->
 <nav id="navbar">
-  <a href__="#" class="nav-logo" onclick="showPage('home');return false;">
+  <a href="#" class="nav-logo" onclick="showPage('home');return false;">
     <img src="PhantomLabs.png" alt="Phantom Labs Group"/>
   </a>
   <button class="nav-hamburger" id="hamburger" onclick="toggleMobileNav()">
     <span></span><span></span><span></span>
   </button>
   <ul class="nav-links" id="nav-links">
-    <li><a href__="#" onclick="mobileNavClick();showPage('home');navScrollTo('about');return false;">About</a></li>
-    <li><a href__="#" onclick="mobileNavClick();showPage('home');navScrollTo('brands');return false;">Brands</a></li>
-    <li><a href__="#" onclick="mobileNavClick();showPage('home');navScrollTo('ecosystem');return false;">Ecosystem</a></li>
+    <li><a href="#" onclick="mobileNavClick();showPage('home');navScrollTo('about');return false;">About</a></li>
+    <li><a href="#" onclick="mobileNavClick();showPage('home');navScrollTo('brands');return false;">Brands</a></li>
+    <li><a href="#" onclick="mobileNavClick();showPage('home');navScrollTo('ecosystem');return false;">Ecosystem</a></li>
   </ul>
   <button class="nav-back" id="nav-back" onclick="showPage('home')">← Home</button>
 </nav>
@@ -754,7 +755,7 @@ body::after{
         Technology.<br/><span class="hl">Creativity.</span><br/>Connected.
       </h1>
       <p class="hero-sub">A small independent studio building tools, systems, and experiences across digital and real-world environments.</p>
-      <a href__="#about" class="btn-neon" onclick="navScrollTo('about');return false;">Enter The Lab</a>
+      <a href="#about" class="btn-neon" onclick="navScrollTo('about');return false;">Enter The Lab</a>
     </div>
     <div class="scroll-hint">
       <span>Scroll</span>
@@ -873,7 +874,7 @@ const COMPANIES = {
   },
   classflow: {
     beta: false,
-    website: { enabled: true, url: "https://classflow-llogan.web.app/" },
+    website: { enabled: true, url: "https://classflow.snproductions.us" },
     name: "ClassFlow",
     pageClass: "cf-page",
     tileClass: "cf",
@@ -966,7 +967,7 @@ const COMPANIES = {
   },
   nibble: {
     beta: true,
-    website: { enabled: false, url: "" },
+    website: { enabled: true, url: "https://nibble.snproductions.us" },
     name: "Nibble",
     pageClass: "nibble-page",
     tileClass: "nibble-t",
@@ -997,7 +998,7 @@ const COMPANIES = {
   },
   soundkit: {
     beta: false,
-    website: { enabled: true, url: "https://https://lloganisawsome.github.io/SoundKit/" },
+    website: { enabled: true, url: "https://soundkit.snproductions.us" },
     name: "SoundKit",
     pageClass: "soundkit-page",
     tileClass: "soundkit-t",
@@ -1027,8 +1028,8 @@ const COMPANIES = {
     footerBorder: "rgba(100,200,255,.12)"
   },
   un1t: {
-    beta: true,
-    website: { enabled: false, url: "" },
+    beta: false,
+    website: { enabled: true, url: "https://un1t.snproductions.us" },
     name: "UN1T Tools",
     pageClass: "un1t-page",
     tileClass: "un1t-t",
@@ -1136,7 +1137,7 @@ function betaHTML(co) {
 function websiteBtn(co, cls) {
   if (!co.website.enabled) return '';
   const url = co.website.url && co.website.url.trim() !== '' ? co.website.url : '404.html';
-  return `<a href__="${url}" target="_blank" class="${cls}" style="opacity:.55;"><div class="${cls === 'btn-brand' ? 'btn-brand-inner' : 'btn-outline-inner'}"></div>Visit Website ↗</a>`;
+  return `<a href="${url}" target="_blank" class="${cls}" style="opacity:.55;"><div class="${cls === 'btn-brand' ? 'btn-brand-inner' : 'btn-outline-inner'}"></div>Visit Website ↗</a>`;
 }
 
 // Build brands grid
@@ -1191,7 +1192,7 @@ companyKeys.forEach((key, i) => {
         <p class="co-desc">${co.desc}</p>
         <div class="co-tags">${co.tags.map(t => `<span class="co-tag">${t}</span>`).join('')}</div>
         <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
-          <a href__="#" class="btn-brand" onclick="showBrand('${key}');return false;"><div class="btn-brand-inner"></div>Learn More</a>
+          <a href="#" class="btn-brand" onclick="showBrand('${key}');return false;"><div class="btn-brand-inner"></div>Learn More</a>
           ${websiteBtn(co, 'btn-brand')}
         </div>
       </div>
@@ -1212,7 +1213,7 @@ companyKeys.forEach((key, i) => {
 const footerLinks = document.getElementById('footer-links');
 companyKeys.forEach(key => {
   const co = COMPANIES[key];
-  footerLinks.innerHTML += `<a href__="#" onclick="showBrand('${key}');return false;">${co.name}</a>`;
+  footerLinks.innerHTML += `<a href="#" onclick="showBrand('${key}');return false;">${co.name}</a>`;
 });
 
 // Build brand pages
@@ -1246,7 +1247,7 @@ companyKeys.forEach(key => {
       <div class="footer-inner">
         <div class="footer-top">
           <div class="footer-logo"><img src="PhantomLabs.png" alt="Phantom Labs"/></div>
-          <div class="footer-links"><a href__="#" onclick="showPage('home');return false;">← Phantom Labs</a></div>
+          <div class="footer-links"><a href="#" onclick="showPage('home');return false;">← Phantom Labs</a></div>
         </div>
         <div class="footer-bottom">© 2025 ${co.name} · A Phantom Labs Brand</div>
       </div>
