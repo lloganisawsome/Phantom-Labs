@@ -1,0 +1,36 @@
+{
+  "rules": {
+    "phantomAnalytics": {
+      "summary": {
+        ".read": "auth != null && (auth.token.email == 'loganstatham76@gmail.com' || root.child('phantomAnalytics/admins').child(auth.uid).val() === true)",
+        ".write": "auth != null && auth.token.firebase.sign_in_provider == 'anonymous'",
+        ".validate": true
+      },
+      "events": {
+        ".read": "auth != null && (auth.token.email == 'loganstatham76@gmail.com' || root.child('phantomAnalytics/admins').child(auth.uid).val() === true)",
+        "$eventId": {
+          ".write": "auth != null && auth.token.firebase.sign_in_provider == 'anonymous' && !data.exists()",
+          ".validate": "newData.hasChildren(['siteId','siteName','visitorId','sessionId','type','path','createdAt','clientTime']) && newData.child('siteId').isString() && newData.child('siteId').val().matches(/^[a-z0-9_-]{1,60}$/) && newData.child('visitorId').isString() && newData.child('sessionId').isString() && newData.child('type').val().matches(/^(page_view|click|custom)$/) && newData.child('path').isString() && newData.child('path').val().length <= 300"
+        }
+      },
+      "sessions": {
+        ".read": "auth != null && (auth.token.email == 'loganstatham76@gmail.com' || root.child('phantomAnalytics/admins').child(auth.uid).val() === true)",
+        "$sessionId": {
+          ".write": "auth != null && auth.token.firebase.sign_in_provider == 'anonymous' && newData.child('sessionId').val() == $sessionId",
+          ".validate": "newData.hasChildren(['siteId','siteName','visitorId','sessionId','path','lastSeenAt']) && newData.child('siteId').isString() && newData.child('siteId').val().matches(/^[a-z0-9_-]{1,60}$/) && newData.child('path').isString() && newData.child('path').val().length <= 300"
+        }
+      },
+      "admins": {
+        ".read": "auth != null && (auth.token.email == 'loganstatham76@gmail.com' || root.child('phantomAnalytics/admins').child(auth.uid).val() === true)",
+        ".write": "auth != null && auth.token.email == 'loganstatham76@gmail.com'",
+        "$uid": {
+          ".validate": "newData.isBoolean()"
+        }
+      },
+      "$other": {
+        ".read": false,
+        ".write": false
+      }
+    }
+  }
+}

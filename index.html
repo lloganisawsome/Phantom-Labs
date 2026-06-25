@@ -825,6 +825,7 @@ body::after{
       <div class="footer-top">
         <div class="footer-logo"><img src="PhantomLabs.png" alt="Phantom Labs"/></div>
         <div class="footer-links" id="footer-links">
+          <a href="analytics.html">Analytics</a>
           <!-- Populated by JS -->
         </div>
       </div>
@@ -1443,5 +1444,13 @@ document.querySelectorAll('.eco-card').forEach((c, i) => { c.style.transitionDel
   </div>
 </div>
 <!-- ===== END PHANTOM LABS GROUP FOOTER ===== -->
-</body>
+<!-- Phantom Labs Analytics -->
+<script>
+  window.PL_ANALYTICS_SITE = {
+    siteId: "phantom-labs",
+    siteName: "Phantom Labs"
+  };
+</script>
+<script type="module" src="pl-analytics.js"></script>
+<!-- End Phantom Labs Analytics --></body>
 </html>
