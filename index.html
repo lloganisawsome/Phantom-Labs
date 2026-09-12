@@ -830,6 +830,148 @@ body{
 .command-page .btn-outline-inner{background:#5C8BF2;}
 .command-page .btn-outline:hover{color:#000514;}
 
+
+/* ===== PATCHBAY GAMES ===== */
+.brand-tile.patchbay-t{background:#030507;border:1px solid rgba(0,132,255,.18);}
+.brand-tile.patchbay-t::before{
+  background:
+    radial-gradient(circle at 24% 10%,rgba(255,145,18,.12),transparent 28%),
+    radial-gradient(circle at 78% 0%,rgba(32,230,132,.1),transparent 30%),
+    radial-gradient(circle at 50% 100%,rgba(0,132,255,.12),transparent 48%);
+}
+.patchbay-t .tile-name{color:#f6f8fb;}
+.patchbay-t .tile-logo{background:#000;border:1px solid rgba(255,255,255,.08);}
+.eco-card.patchbay{border-color:rgba(0,132,255,.14);}
+.eco-card.patchbay::before{background:linear-gradient(90deg,transparent,rgba(255,145,18,.36),rgba(0,132,255,.36),rgba(32,230,132,.36),transparent);}
+.patchbay .eco-card-label{color:#f6f8fb;}
+
+#patchbay{background:#020406;}
+#patchbay .section-bg-glow{
+  background:
+    radial-gradient(ellipse at 18% 46%,rgba(255,145,18,.08),transparent 42%),
+    radial-gradient(ellipse at 82% 44%,rgba(32,230,132,.075),transparent 46%),
+    radial-gradient(ellipse at 52% 66%,rgba(0,132,255,.08),transparent 52%);
+}
+#patchbay .co-name{
+  font-family:'Orbitron',sans-serif;font-size:clamp(1.9rem,3.8vw,3.25rem);
+  font-weight:800;color:#f6f8fb;letter-spacing:.06em;text-transform:uppercase;
+  text-shadow:0 0 34px rgba(0,132,255,.28);
+}
+#patchbay .co-bar{
+  width:82px;
+  background:linear-gradient(90deg,#ff9112,#0084ff,#20e684,transparent);
+  box-shadow:0 0 12px rgba(0,132,255,.35);
+}
+#patchbay .co-tag{background:rgba(255,255,255,.045);color:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.11);}
+#patchbay .btn-brand{border-color:#f6f8fb;color:#f6f8fb;}
+#patchbay .btn-brand-inner{background:#f6f8fb;}
+#patchbay .btn-brand:hover{color:#020406;box-shadow:0 0 25px rgba(0,132,255,.3);}
+#patchbay .co-logo{filter:drop-shadow(0 0 36px rgba(0,132,255,.22));}
+#patchbay .co-card{border-color:rgba(255,255,255,.09);}
+#patchbay .feat-dot{background:#0084ff;box-shadow:0 0 5px rgba(0,132,255,.75);}
+
+.patchbay-page .bp-hero{background:#020406;min-height:68vh;}
+.patchbay-page .bp-hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px),
+    radial-gradient(ellipse at 25% 45%,rgba(255,145,18,.1),transparent 42%),
+    radial-gradient(ellipse at 76% 38%,rgba(32,230,132,.08),transparent 44%),
+    radial-gradient(ellipse at 50% 75%,rgba(0,132,255,.1),transparent 50%);
+  background-size:42px 42px,42px 42px,auto,auto,auto;
+}
+.patchbay-page .bp-logo{
+  width:min(560px,84vw);max-height:190px;object-fit:contain;
+  filter:drop-shadow(0 0 34px rgba(0,132,255,.24));
+}
+.patchbay-page .bp-title{
+  color:#f6f8fb;font-family:'Orbitron',sans-serif;font-weight:800;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+.patchbay-page .bp-section h3{color:#f6f8fb;}
+.patchbay-page .bp-card{border-color:rgba(255,255,255,.1);}
+.patchbay-page .btn-outline{border-color:#f6f8fb;color:#f6f8fb;}
+.patchbay-page .btn-outline-inner{background:#f6f8fb;}
+.patchbay-page .btn-outline:hover{color:#020406;}
+.patchbay-page .bp-cards{grid-template-columns:repeat(auto-fit,minmax(270px,1fr));}
+.patchbay-page .bp-sub::after{
+  content:'';
+  display:block;width:min(440px,72vw);height:76px;margin:1.9rem auto 0;
+  background:
+    radial-gradient(circle at 8% 50%,#111 0 9px,#d7dde4 10px 15px,transparent 16px),
+    radial-gradient(circle at 28% 50%,#ff9112 0 9px,#d7dde4 10px 15px,transparent 16px),
+    radial-gradient(circle at 49% 50%,#0084ff 0 9px,#d7dde4 10px 15px,transparent 16px),
+    radial-gradient(circle at 72% 50%,#20e684 0 9px,#d7dde4 10px 15px,transparent 16px),
+    radial-gradient(circle at 92% 50%,#111 0 9px,#d7dde4 10px 15px,transparent 16px),
+    linear-gradient(90deg,transparent 24%,#ff9112 24% 45%,transparent 45%),
+    linear-gradient(90deg,transparent 50%,#0084ff 50% 70%,transparent 70%),
+    linear-gradient(90deg,transparent 72%,#20e684 72% 92%,transparent 92%);
+  background-repeat:no-repeat;
+  background-size:100% 100%,100% 100%,100% 100%,100% 100%,100% 100%,100% 6px,100% 6px,100% 6px;
+  background-position:center,center,center,center,center,center 48px,center 30px,center 58px;
+  opacity:.82;
+}
+.game-card{
+  padding:0;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.018));
+}
+.game-art{
+  min-height:165px;position:relative;display:flex;align-items:center;justify-content:center;
+  background:#06080a;border-bottom:1px solid rgba(255,255,255,.08);overflow:hidden;
+}
+.game-art::before{
+  content:'';position:absolute;inset:18px;
+  background:
+    linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:24px 24px;opacity:.45;
+}
+.game-art::after{
+  content:'';position:absolute;left:13%;right:13%;bottom:28px;height:3px;
+  background:linear-gradient(90deg,#ff9112,#0084ff,#20e684);
+  box-shadow:0 0 18px rgba(0,132,255,.25);
+}
+.game-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.46;filter:saturate(1.05) contrast(1.05);}
+.game-mark{
+  position:relative;z-index:1;width:72px;height:72px;border-radius:16px;
+  display:grid;place-items:center;font-size:2rem;
+  background:rgba(0,0,0,.58);border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 16px 50px rgba(0,0,0,.28);
+}
+.game-art.cafe{background:linear-gradient(135deg,#150b05,#1b1810 50%,#092017);}
+.game-art.cafe::after{background:linear-gradient(90deg,#d78539,#f2d38d,#2fbf83);}
+.game-art.venue{background:linear-gradient(135deg,#09090d,#211013 55%,#071621);}
+.game-art.venue::after{background:linear-gradient(90deg,#ff484c,#0084ff,#20e684);}
+.game-content{padding:1.35rem;}
+.game-head{display:flex;justify-content:space-between;gap:1rem;align-items:flex-start;margin-bottom:.7rem;}
+.game-head h4{font-family:'Exo 2',sans-serif;font-size:1.08rem;font-weight:850;margin:0;color:#fff;}
+.game-status{
+  flex-shrink:0;font-family:'Rajdhani',sans-serif;font-size:.62rem;font-weight:800;
+  letter-spacing:.12em;text-transform:uppercase;color:#20e684;
+  border:1px solid rgba(32,230,132,.2);background:rgba(32,230,132,.07);
+  border-radius:100px;padding:.25rem .55rem;
+}
+.game-card p{font-size:.84rem;line-height:1.75;color:rgba(255,255,255,.48);margin-bottom:1rem;}
+.game-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin:1rem 0 1.1rem;}
+.game-shot{
+  min-height:52px;border-radius:5px;border:1px solid rgba(255,255,255,.08);
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.05) 18%,transparent 18% 26%,rgba(255,255,255,.035) 26% 68%,transparent 68%),
+    rgba(255,255,255,.026);
+  display:flex;align-items:flex-end;padding:.42rem;
+  font-family:'Rajdhani',sans-serif;font-size:.57rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.38);
+}
+.game-launch{
+  display:inline-flex;align-items:center;justify-content:center;width:100%;
+  padding:.78rem 1rem;border-radius:2px;border:1px solid rgba(255,255,255,.18);
+  color:#f6f8fb;text-decoration:none;font-family:'Rajdhani',sans-serif;
+  font-size:.72rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  background:rgba(255,255,255,.035);transition:background .25s,border-color .25s,transform .25s;
+}
+.game-launch:hover{background:#f6f8fb;color:#020406;border-color:#f6f8fb;transform:translateY(-1px);}
+.patchbay-page footer{border-top:1px solid rgba(255,255,255,.1);}
+
 /* FOOTER */
 footer{background:#000;border-top:1px solid rgba(57,255,20,.08);padding:2.5rem 2rem 2rem;}
 .footer-inner{max-width:1000px;margin:0 auto;}
@@ -898,6 +1040,7 @@ body::after{
     <li><a href="#" onclick="mobileNavClick();showPage('home');navScrollTo('about');return false;">About</a></li>
     <li><a href="#" onclick="mobileNavClick();showPage('home');navScrollTo('brands');return false;">Brands</a></li>
     <li><a href="#" onclick="mobileNavClick();showPage('home');navScrollTo('ecosystem');return false;">Ecosystem</a></li>
+    <li><a href="#" onclick="mobileNavClick();showPage('home');navScrollTo('patchbay');return false;">Games</a></li>
   </ul>
   <button class="nav-back" id="nav-back" onclick="showPage('home')">← Home</button>
 </nav>
@@ -1379,36 +1522,55 @@ const COMPANIES = {
     ],
     footerBorder: "rgba(70,228,216,.14)"
   },
-  venue: {
-    beta: true,
+  patchbay: {
+    beta: false,
     website: { enabled: false, url: "" },
-    name: "Venue Simulator",
-    pageClass: "venue-page",
-    tileClass: "venue-t",
-    ecoClass: "venue",
+    name: "Patchbay Games",
+    pageClass: "patchbay-page",
+    tileClass: "patchbay-t",
+    ecoClass: "patchbay",
     brandNum: "13",
-    logo: "VenueSimulator.jpeg",
-    logoStyle: "border-radius:18%;width:min(205px,66%)",
-    nameFontHTML: '<h2 class="co-name">Venue Simulator</h2>',
-    tagline: "Hard Mode Means Hard Mode.",
-    desc: "Venue Simulator: Hard Mode is a live-event operations game where you run an 8,500-capacity indoor venue from load-in to lights-out. Manage crews, crowds, production systems, building failures, guest flow, and the budget while the event keeps moving.",
-    tags: ["Game","Venue Ops","Simulation","Events","Hard Mode"],
-    cardTitle: "// Event Day Systems",
-    features: ["Production, security, staffing, admissions, HVAC, power, network, and concessions","Load-in, doors, showtime, changeover, headliner, and egress phases","Incidents, failures, queues, costs, uptime, delays, and safety scoring","Crew routing through docks, entrances, backstage, and concourses"],
-    tileDesc: "A chaotic live-event operations sim for running an 8,500-capacity venue.",
-    ecoDesc: "A live-event command game that turns venue operations into a tense systems sim — production, staffing, crowds, incidents, costs, and showtime pressure.",
-    pageTitle: "Venue Simulator",
-    pageTitleHTML: '<h1 class="bp-title">Venue Simulator</h1>',
-    pageSub: "Run an 8,500-capacity indoor venue from load-in to lights-out.",
-    pageAbout: ["Venue Simulator: Hard Mode is a live-event operations game about keeping a building alive while the event day tries to break it.","Each phase changes the venue. Load-in brings trucks and gear, doors create lines, changeover hits concessions and restrooms, the headliner spikes production load, and egress floods the exits.","It plays like a front-of-house command center crossed with a venue management sim: busy, nerdy, high-pressure, and weirdly satisfying."],
-    pageCardsTitle: "Simulation Layers",
+    logo: "PatchbayGamesWide.png",
+    tileLogo: "PatchbayGames.png",
+    logoStyle: "width:min(420px,82%);max-height:150px;object-fit:contain",
+    nameFontHTML: '<h2 class="co-name">Patchbay Games</h2>',
+    tagline: "A Phantom Labs studio.",
+    desc: "Patchbay Games is the game development studio inside Phantom Labs — the parent label for our simulation projects and future playable worlds. It routes design, operations, systems, and story through one focused game studio without losing the Phantom Labs foundation.",
+    tags: ["Game Studio","2D Sims","Operations","Management","Phantom Labs"],
+    cardTitle: "// Studio Routing",
+    features: ["Parent studio for Phantom Labs-developed games","Home of Café Simulator and Venue Simulator","2D operations and management systems","Built to support more game titles over time"],
+    tileDesc: "A Phantom Labs studio for 2D management and operations games.",
+    ecoDesc: "The game studio layer of Phantom Labs — connecting design, systems, and playable operations sims through one recognizable parent brand.",
+    pageTitle: "Patchbay Games",
+    pageTitleHTML: '<h1 class="bp-title">Patchbay Games</h1>',
+    pageSub: "Patchbay Games — a Phantom Labs studio. A home for connected 2D management and operations games built inside Phantom Labs.",
+    pageAbout: ["Patchbay Games is the dedicated game studio under Phantom Labs. The name comes from a production patchbay: different systems routed through one central place, connected with intent and room to grow.","The studio keeps each game title independent while giving them a shared parent brand, development language, and launch home.","Café Simulator and Venue Simulator are the first Patchbay Games projects. More titles can be added to this page through the same game-card system."],
+    pageCardsTitle: "Games",
     pageCards: [
-      {icon:"🚚",title:"Load-In",desc:"Move trucks, forklifts, crews, and gear through the dock without losing the schedule."},
-      {icon:"🚪",title:"Doors & Crowd Flow",desc:"Route guests through security, concourses, seating, restrooms, and exits."},
-      {icon:"⚠️",title:"Incidents & Failures",desc:"Power, HVAC, network, staffing, backstage, and crowd issues can cascade fast."},
-      {icon:"📊",title:"Final Score",desc:"Safety, profit, uptime, delays, and guest experience all affect the event result."}
+      {
+        icon:"☕",
+        title:"Café Simulator",
+        status:"Playable",
+        artClass:"cafe",
+        desc:"A 2D management simulator focused on operating a café, including customers, employees, food preparation, inventory, deliveries, restocking, opening, closing, and day-to-day operations.",
+        screenshots:["Service","Kitchen","Inventory"],
+        launchUrl:"https://lloganisawsome.github.io/CS/",
+        launchLabel:"Launch Café Simulator"
+      },
+      {
+        icon:"🎛️",
+        title:"Venue Simulator",
+        status:"Playable",
+        artClass:"venue",
+        artImage:"VenueSimulator.jpeg",
+        desc:"A 2D venue operations simulator focused on running events from load-in through load-out, including crews, equipment, trucks, forklifts, backstage operations, security, IT, utilities, admissions, maintenance, and live event operations.",
+        screenshots:["Load-In","Backstage","Showtime"],
+        launchUrl:"https://lloganisawsome.github.io/VS/",
+        launchLabel:"Launch Venue Simulator"
+      }
     ],
-    footerBorder: "rgba(255,72,76,.14)"
+    footerText: "© 2025 Patchbay Games — a Phantom Labs studio",
+    footerBorder: "rgba(255,255,255,.1)"
   },
   commandcenter: {
     beta: true,
@@ -1470,9 +1632,10 @@ companyKeys.forEach((key, i) => {
   if (i > 0) tile.style.transitionDelay = (i * .06) + 's';
   tile.onclick = function(){ showBrand(key); return false; };
   const tlogoStyle = co.logoStyle ? co.logoStyle.replace(/width:[^;]+/,'') + ';' : '';
+  const tileLogo = co.tileLogo || co.logo;
   tile.innerHTML = `
     <div class="tile-top">
-      <img src="${co.logo}" alt="${co.name}" class="tile-logo" style="${tlogoStyle}height:40px;width:40px;object-fit:cover;"/>
+      <img src="${tileLogo}" alt="${co.name}" class="tile-logo" style="${tlogoStyle}height:40px;width:40px;object-fit:cover;"/>
       <div class="tile-name-wrap">
         <div class="tile-name">${co.name}</div>
         ${betaHTML(co)}
@@ -1558,7 +1721,7 @@ companyKeys.forEach(key => {
       <div class="bp-section reveal">
         <h3>${co.pageCardsTitle}</h3>
         <div class="bp-cards">
-          ${co.pageCards.map(c => `<div class="bp-card"><div class="bp-card-icon">${c.icon}</div><h4>${c.title}</h4><p>${c.desc}</p></div>`).join('')}
+          ${co.pageCards.map(c => c.launchUrl ? `<div class="bp-card game-card"><div class="game-art ${c.artClass || ''}">${c.artImage ? `<img src="${c.artImage}" alt="${c.title} artwork"/>` : ''}<div class="game-mark">${c.icon}</div></div><div class="game-content"><div class="game-head"><h4>${c.title}</h4><span class="game-status">${c.status || 'In development'}</span></div><p>${c.desc}</p><div class="game-shots">${(c.screenshots || []).map(s => `<div class="game-shot">${s}</div>`).join('')}</div><a class="game-launch" href="${c.launchUrl}" target="_blank" rel="noopener noreferrer">${c.launchLabel || 'Launch'} ↗</a></div></div>` : `<div class="bp-card"><div class="bp-card-icon">${c.icon}</div><h4>${c.title}</h4><p>${c.desc}</p></div>`).join('')}
         </div>
       </div>
     </div>
@@ -1568,7 +1731,7 @@ companyKeys.forEach(key => {
           <div class="footer-logo"><img src="PhantomLabs.png" alt="Phantom Labs"/></div>
           <div class="footer-links"><a href="#" onclick="showPage('home');return false;">← Phantom Labs</a></div>
         </div>
-        <div class="footer-bottom">© 2025 ${co.name} · A Phantom Labs Brand</div>
+        <div class="footer-bottom">${co.footerText || `© 2025 ${co.name} · A Phantom Labs Brand`}</div>
       </div>
     </footer>
   </div>`;
@@ -1647,7 +1810,7 @@ const ctx = canvas.getContext('2d');
 let W, H;
 function resizeC() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
 resizeC(); window.addEventListener('resize', resizeC);
-const PAL = ['#39ff14','#39ff14','#ffffff','#6B8AFF','#00b4e6','#BFA7FF','#26BC9C','#64C8FF','#FFD23C','#228B22','#2DE2E6','#D56F2B','#46E4D8','#FF484C','#5C8BF2'];
+const PAL = ['#39ff14','#39ff14','#ffffff','#6B8AFF','#00b4e6','#BFA7FF','#26BC9C','#64C8FF','#FFD23C','#228B22','#2DE2E6','#D56F2B','#46E4D8','#0084ff','#ff9112','#20e684','#5C8BF2'];
 const pts = [];
 for (let i = 0; i < 90; i++) {
   pts.push({
@@ -1693,7 +1856,7 @@ const SEC = {
   eclipse:'rgba(153,110,255,.28)', nibble:'rgba(38,188,156,.28)', soundkit:'rgba(100,200,255,.28)',
   un1t:'rgba(255,255,255,.16)', lightspace:'rgba(255,210,60,.28)', tac:'rgba(34,139,34,.28)',
   radio:'rgba(45,226,230,.28)', channelcrate:'rgba(213,111,43,.28)', glasslaunch:'rgba(70,228,216,.28)',
-  venue:'rgba(255,72,76,.28)', commandcenter:'rgba(92,139,242,.28)'
+  patchbay:'rgba(0,132,255,.28)', commandcenter:'rgba(92,139,242,.28)'
 };
 const nObs = new IntersectionObserver(en => {
   en.forEach(e => {
