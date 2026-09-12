@@ -938,6 +938,11 @@ body{
   background:rgba(0,0,0,.58);border:1px solid rgba(255,255,255,.14);
   box-shadow:0 16px 50px rgba(0,0,0,.28);
 }
+.game-logo-img{
+  position:relative;z-index:1;width:min(148px,58%);aspect-ratio:1;
+  object-fit:contain;border-radius:18px;
+  box-shadow:0 18px 55px rgba(0,0,0,.34);
+}
 .game-art.cafe{background:linear-gradient(135deg,#150b05,#1b1810 50%,#092017);}
 .game-art.cafe::after{background:linear-gradient(90deg,#d78539,#f2d38d,#2fbf83);}
 .game-art.venue{background:linear-gradient(135deg,#09090d,#211013 55%,#071621);}
@@ -1552,6 +1557,7 @@ const COMPANIES = {
         title:"Café Simulator",
         status:"Playable",
         artClass:"cafe",
+        logoImage:"CafeSimulator.png",
         desc:"A 2D management simulator focused on operating a café, including customers, employees, food preparation, inventory, deliveries, restocking, opening, closing, and day-to-day operations.",
         screenshots:["Service","Kitchen","Inventory"],
         launchUrl:"https://lloganisawsome.github.io/CS/",
@@ -1721,7 +1727,7 @@ companyKeys.forEach(key => {
       <div class="bp-section reveal">
         <h3>${co.pageCardsTitle}</h3>
         <div class="bp-cards">
-          ${co.pageCards.map(c => c.launchUrl ? `<div class="bp-card game-card"><div class="game-art ${c.artClass || ''}">${c.artImage ? `<img src="${c.artImage}" alt="${c.title} artwork"/>` : ''}<div class="game-mark">${c.icon}</div></div><div class="game-content"><div class="game-head"><h4>${c.title}</h4><span class="game-status">${c.status || 'In development'}</span></div><p>${c.desc}</p><div class="game-shots">${(c.screenshots || []).map(s => `<div class="game-shot">${s}</div>`).join('')}</div><a class="game-launch" href="${c.launchUrl}" target="_blank" rel="noopener noreferrer">${c.launchLabel || 'Launch'} ↗</a></div></div>` : `<div class="bp-card"><div class="bp-card-icon">${c.icon}</div><h4>${c.title}</h4><p>${c.desc}</p></div>`).join('')}
+          ${co.pageCards.map(c => c.launchUrl ? `<div class="bp-card game-card"><div class="game-art ${c.artClass || ''}">${c.artImage ? `<img src="${c.artImage}" alt="${c.title} artwork"/>` : ''}${c.logoImage ? `<img class="game-logo-img" src="${c.logoImage}" alt="${c.title} logo"/>` : `<div class="game-mark">${c.icon}</div>`}</div><div class="game-content"><div class="game-head"><h4>${c.title}</h4><span class="game-status">${c.status || 'In development'}</span></div><p>${c.desc}</p><div class="game-shots">${(c.screenshots || []).map(s => `<div class="game-shot">${s}</div>`).join('')}</div><a class="game-launch" href="${c.launchUrl}" target="_blank" rel="noopener noreferrer">${c.launchLabel || 'Launch'} ↗</a></div></div>` : `<div class="bp-card"><div class="bp-card-icon">${c.icon}</div><h4>${c.title}</h4><p>${c.desc}</p></div>`).join('')}
         </div>
       </div>
     </div>
